@@ -44,3 +44,4 @@ private/
 
 # Ignore markdown files if you don't want them in the repo
 *.md
+!README.md
