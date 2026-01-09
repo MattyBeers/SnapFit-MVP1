@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabaseClient";
+import { useState } from "react";
 
 export default function Header() {
   const { user } = useAuth() || {};
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -15,6 +17,16 @@ export default function Header() {
 
   return (
     <header className="site-header">
+      <button
+        className="header-hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((s) => !s)}
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        </svg>
+      </button>
       <div className="site-header__left">
         <Link to="/" className="site-brand-link" aria-label="SnapFit home">
           <img src="/SnapFit-.png" alt="SnapFit" className="site-logo" />
@@ -34,6 +46,22 @@ export default function Header() {
         <Link to="/outfits" className="site-nav__link">Outfits</Link>
         <Link to="/explore" className="site-nav__link">Explore</Link>
       </nav>
+
+      {/* Mobile/docked nav drawer (visible when header-hamburger toggled) */}
+      {menuOpen && (
+        <div className="mobile-nav-drawer" role="dialog" aria-label="Mobile navigation">
+          <div className="mobile-nav-inner">
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/closet" onClick={() => setMenuOpen(false)}>Closet</Link>
+            <Link to="/wishlist" onClick={() => setMenuOpen(false)}>Wishlist</Link>
+            <Link to="/vfr" onClick={() => setMenuOpen(false)}>VFR</Link>
+            <Link to="/outfits" onClick={() => setMenuOpen(false)}>Outfits</Link>
+            <Link to="/explore" onClick={() => setMenuOpen(false)}>Explore</Link>
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>Profile</Link>
+          </div>
+          <button className="mobile-nav-close" aria-label="Close" onClick={() => setMenuOpen(false)}>Close</button>
+        </div>
+      )}
 
       <div className="site-header__actions">
         <div className="site-actions-vertical">
