@@ -1,0 +1,423 @@
+/* ============================================================================
+   SNAPFIT CARD COMPONENTS
+   ============================================================================
+   
+   Card styles for displaying content in contained boxes.
+   
+   CARD VARIANTS:
+   - .sf-card : Base card styles
+   - .sf-card-elevated : Card with shadow
+   - .sf-card-bordered : Card with border
+   - .sf-card-interactive : Clickable/hoverable card
+   
+   SPECIALIZED CARDS:
+   - .closet-item-card : Clothing item card in closet
+   - .outfit-card : Outfit display card
+   - .feed-card : Social feed post card
+   - .vfr-item-card : Item card in Virtual Fitting Room
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   BASE CARD
+   ========================================================================== */
+
+.sf-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-lg);
+  overflow: hidden;
+  padding: var(--sf-space-5);
+  box-shadow: var(--sf-shadow-sm);
+}
+
+/* Subtle card - lighter styling for nested content */
+.sf-card-subtle {
+  background: var(--sf-bg-secondary);
+  border-radius: var(--sf-radius-md);
+  padding: var(--sf-space-3) var(--sf-space-4);
+}
+
+/* Stack - vertical flex container with gap */
+.sf-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-3);
+}
+
+/* Row - horizontal flex container with gap */
+.sf-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+}
+
+/* Card with elevation/shadow */
+.sf-card-elevated {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-lg);
+  box-shadow: var(--sf-shadow-md);
+  overflow: hidden;
+}
+
+/* Card with border */
+.sf-card-bordered {
+  background: var(--sf-surface);
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius-lg);
+  overflow: hidden;
+}
+
+/* Interactive card with hover effects */
+.sf-card-interactive {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-lg);
+  box-shadow: var(--sf-shadow-sm);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--sf-transition-normal);
+}
+
+.sf-card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sf-shadow-lg);
+}
+
+/* ==========================================================================
+   CARD SECTIONS
+   ========================================================================== */
+
+.sf-card-header {
+  padding: var(--sf-space-4) var(--sf-space-5);
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.sf-card-body {
+  padding: var(--sf-space-5);
+}
+
+.sf-card-footer {
+  padding: var(--sf-space-4) var(--sf-space-5);
+  border-top: 1px solid var(--sf-border);
+  background: var(--sf-bg-secondary);
+}
+
+/* ==========================================================================
+   CLOSET ITEM CARD
+   ========================================================================== 
+   
+   Card for displaying clothing items in the closet grid.
+   
+   ========================================================================== */
+
+.closet-item-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sf-shadow-sm);
+  transition: var(--sf-transition-normal);
+  cursor: pointer;
+}
+
+.closet-item-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sf-shadow-lg);
+}
+
+/* Item image container */
+.closet-item-image {
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--sf-bg-secondary);
+  position: relative;
+}
+
+.closet-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--sf-duration-slow) ease;
+}
+
+.closet-item-card:hover .closet-item-image img {
+  transform: scale(1.05);
+}
+
+/* Item info section */
+.closet-item-info {
+  padding: var(--sf-space-3);
+}
+
+.closet-item-name {
+  font-weight: var(--sf-font-semibold);
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closet-item-brand {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+}
+
+/* Category badge on item */
+.closet-item-category {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: var(--sf-font-semibold);
+  text-transform: uppercase;
+}
+
+/* ==========================================================================
+   OUTFIT CARD
+   ========================================================================== 
+   
+   Card for displaying saved outfits.
+   
+   ========================================================================== */
+
+.outfit-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--sf-shadow-md);
+  transition: var(--sf-transition-normal);
+}
+
+.outfit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sf-shadow-xl);
+}
+
+/* Outfit preview grid (shows multiple items) */
+.outfit-preview {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--sf-border);
+  aspect-ratio: 1;
+}
+
+.outfit-preview-item {
+  background: var(--sf-bg-secondary);
+  overflow: hidden;
+}
+
+.outfit-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Outfit card info */
+.outfit-card-info {
+  padding: var(--sf-space-4);
+}
+
+.outfit-card-name {
+  font-weight: var(--sf-font-semibold);
+  font-size: var(--sf-text-base);
+  color: var(--sf-text);
+  margin-bottom: 4px;
+}
+
+.outfit-card-occasion {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   FEED CARD (Social/Explore)
+   ========================================================================== 
+   
+   Card for displaying posts in the explore/community feed.
+   
+   ========================================================================== */
+
+.feed-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--sf-shadow-md);
+  margin-bottom: var(--sf-space-5);
+}
+
+/* Feed card header with user info */
+.feed-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  padding: var(--sf-space-4);
+}
+
+.feed-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--sf-radius-full);
+  object-fit: cover;
+}
+
+.feed-user-info {
+  flex: 1;
+}
+
+.feed-username {
+  font-weight: var(--sf-font-semibold);
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+}
+
+.feed-timestamp {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+}
+
+/* Feed card image */
+.feed-card-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--sf-bg-secondary);
+}
+
+.feed-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Feed card actions (like, comment, share) */
+.feed-card-actions {
+  display: flex;
+  gap: var(--sf-space-4);
+  padding: var(--sf-space-4);
+}
+
+.feed-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--sf-text);
+  font-size: var(--sf-text-sm);
+  transition: color var(--sf-duration-fast) ease;
+}
+
+.feed-action-btn:hover {
+  color: var(--sf-primary);
+}
+
+.feed-action-btn.liked {
+  color: var(--sf-error);
+}
+
+/* Feed card caption */
+.feed-card-caption {
+  padding: 0 var(--sf-space-4) var(--sf-space-4);
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+}
+
+/* ==========================================================================
+   VFR ITEM CARD (Virtual Fitting Room)
+   ========================================================================== 
+   
+   Compact item cards for selecting items in VFR.
+   
+   ========================================================================== */
+
+.vfr-item-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: all 0.2s;
+}
+
+.vfr-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.vfr-item-card.selected {
+  border: 3px solid #10b981;
+}
+
+/* ==========================================================================
+   ANGLE PHOTO CARD (Settings - Multi-angle photos)
+   ========================================================================== 
+   
+   Card for uploading body photos from different angles.
+   
+   ========================================================================== */
+
+.angle-photo-card {
+  background: var(--sf-surface);
+  border: 2px dashed var(--sf-border);
+  border-radius: var(--sf-radius-lg);
+  padding: var(--sf-space-5);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--sf-transition-normal);
+}
+
+.angle-photo-card:hover {
+  border-color: var(--sf-primary);
+  background: var(--sf-primary-light);
+}
+
+.angle-photo-card.has-photo {
+  border-style: solid;
+  border-color: var(--sf-success);
+}
+
+.angle-photo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--sf-radius-md);
+  margin-bottom: var(--sf-space-3);
+}
+
+.angle-photo-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-2);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+}
+
+.angle-photo-status {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+  margin-top: var(--sf-space-1);
+}
+
+/* Responsive angle photo grid */
+@media (max-width: 640px) {
+  .multi-angle-photos {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .angle-photo-card {
+    padding: 12px !important;
+  }
+  
+  .angle-photo-card img {
+    height: 160px !important;
+  }
+}

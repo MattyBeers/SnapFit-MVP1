@@ -1,0 +1,989 @@
+/* ============================================================================
+   SNAPFIT VIRTUAL FITTING ROOM PAGE STYLES
+   ============================================================================
+   
+   Styles for the Virtual Fitting Room (VFR) experience.
+   
+   SECTIONS:
+   - .vfr-page : Main VFR page container
+   - .fitting-room-* : Fitting room modal and content
+   - .body-template : User body display area
+   - .body-silhouette : Body silhouette/photo display
+   - .outfit-items-overlay : Clothing overlay on body
+   - .rotation-controls : 360° rotation controls
+   - .fit-score : AI fit scoring section
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   VFR PAGE CONTAINER
+   ========================================================================== */
+
+.vfr-page {
+  min-height: 100vh;
+  padding: var(--sf-space-6);
+  padding-bottom: calc(var(--sf-space-6) + var(--sf-bottom-nav-height));
+  background: var(--sf-bg);
+}
+
+@media (min-width: 769px) {
+  .vfr-page {
+    padding-top: calc(var(--sf-space-6) + var(--sf-header-height));
+    padding-bottom: var(--sf-space-6);
+  }
+}
+
+.vfr-page-header {
+  text-align: center;
+  margin-bottom: var(--sf-space-6);
+}
+
+.vfr-page-header h1 {
+  font-size: var(--sf-text-3xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+.vfr-page-header p {
+  color: var(--sf-muted);
+  font-size: var(--sf-text-base);
+}
+
+/* ==========================================================================
+   VFR SELECTED ITEMS BAR
+   ========================================================================== */
+
+.vfr-selected-bar {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: var(--sf-radius-lg);
+  padding: var(--sf-space-4);
+  margin-bottom: var(--sf-space-5);
+  border: 2px solid var(--sf-success);
+}
+
+.vfr-selected-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sf-space-3);
+}
+
+.vfr-selected-count {
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-success-dark);
+}
+
+.vfr-selected-items {
+  display: flex;
+  gap: var(--sf-space-2);
+  flex-wrap: wrap;
+}
+
+.vfr-selected-item {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--sf-radius-md);
+  overflow: hidden;
+  border: 2px solid white;
+  box-shadow: var(--sf-shadow-sm);
+}
+
+.vfr-selected-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   VFR ITEMS GRID
+   ========================================================================== */
+
+.vfr-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--sf-space-4);
+}
+
+/* ==========================================================================
+   BODY TEMPLATE CONTAINER
+   ========================================================================== 
+   
+   Main container for the body display with clothing overlays.
+   
+   ========================================================================== */
+
+.body-template {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--sf-space-6);
+  transition: transform 0.3s ease;
+}
+
+.body-template.enhanced {
+  perspective: 1000px;
+}
+
+/* Keep the body-template visually contained like a card so background presets
+   don't feel like they're stretching the whole page. */
+.body-template {
+  border-radius: var(--sf-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(7, 13, 27, 0.12);
+}
+
+/* ==========================================================================
+   USER BODY PHOTO
+   ========================================================================== */
+
+.user-body-photo {
+  position: relative;
+  width: 280px;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--sf-radius-lg);
+}
+
+.user-body-photo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Photo backgrounds */
+.vfr-background-gradient {
+  background: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 100%);
+}
+
+.vfr-background-studio {
+  background: radial-gradient(ellipse at center, #ffffff 0%, #e0e0e0 70%, #cccccc 100%);
+}
+
+.vfr-background-natural {
+  background: linear-gradient(180deg, #e8f4e8 0%, #d4e8d4 100%);
+}
+
+/* Preset background utility classes for body-template */
+.body-template.bg-neutral { background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%); }
+.body-template.bg-studio { background: radial-gradient(circle at 30% 20%, #ffffff 0%, #f7f7f8 30%, #e6e6e8 60%), linear-gradient(180deg, #f6f7fb 0%, #e9edf8 100%); }
+.body-template.bg-bedroom { background: linear-gradient(180deg, #fff1df 0%, #ffd6b8 30%, #ffc08a 65%); background-blend-mode: multiply; }
+.body-template.bg-closet { background: linear-gradient(180deg, #fbfbfb 0%, #f0f2f4 50%, #e9eef6 100%); }
+.body-template.bg-mirror { background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(240,246,255,0.6) 40%), linear-gradient(180deg, #eef2ff 0%, #e6eefc 100%); box-shadow: inset 0 0 40px rgba(0,0,0,0.06); }
+.body-template.bg-outdoor { background: linear-gradient(180deg, #e6fbef 0%, #cfeed8 45%, #b9e6c1 100%); }
+.body-template.bg-beach { background: linear-gradient(180deg, #fff8e6 0%, #ffd98f 30%, #8fdaf8 100%); background-blend-mode: multiply; }
+.body-template.bg-woods { background: linear-gradient(180deg, #e7f5ea 0%, #bfe6c7 35%, #9bd0a1 100%); background-blend-mode: multiply; }
+.body-template.bg-city { background: linear-gradient(180deg, #f4f6f8 0%, #e8eef6 40%, #dce6f2 100%); }
+
+/* Subtle overlay to simulate depth/ground for outdoor scenes */
+.body-template.bg-outdoor::after, .body-template.bg-beach::after, .body-template.bg-woods::after, .body-template.bg-city::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 48%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.06) 100%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Background thumbnails for quick selection */
+.bg-thumbs { display:flex; gap:8px; align-items:center; margin-left:12px; }
+.bg-thumb { width:36px; height:36px; border-radius:8px; border:2px solid transparent; cursor:pointer; box-shadow: var(--sf-shadow-sm); }
+.bg-thumb.active { border-color: rgba(99,102,241,0.9); transform: scale(1.05); }
+.bg-thumb.bg-neutral { background: linear-gradient(180deg, #f3f4f6 0%, #e5e7eb 100%); }
+.bg-thumb.bg-studio { background: radial-gradient(circle at 30% 20%, #ffffff 0%, #f7f7f8 30%, #e6e6e8 60%), linear-gradient(180deg, #f6f7fb 0%, #e9edf8 100%); }
+.bg-thumb.bg-bedroom { background: linear-gradient(180deg, #fff7ed 0%, #fff1e6 40%, #fdeed6 100%); }
+.bg-thumb.bg-beach { background: linear-gradient(180deg, #fffbe6 0%, #ffe7b8 40%, #d5f3ff 100%); }
+.bg-thumb.bg-woods { background: linear-gradient(180deg, #eaf7ef 0%, #d6efd8 40%, #c7e6c7 100%); }
+.bg-thumb.bg-city { background: linear-gradient(180deg, #f4f6f8 0%, #e8eef6 40%, #dce6f2 100%); }
+.bg-thumb.bg-closet { background: linear-gradient(180deg, #fbfbfb 0%, #f0f2f4 50%, #e9eef6 100%); }
+.bg-thumb.bg-mirror { background: linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(240,246,255,0.6) 40%), linear-gradient(180deg, #eef2ff 0%, #e6eefc 100%); }
+.bg-thumb.bg-outdoor { background: linear-gradient(180deg, #eef9f1 0%, #dff3e5 60%, #cfecd8 100%); }
+.bg-thumb.custom-thumb { background-size: cover; background-position: center; }
+
+/* ==========================================================================
+   BODY SILHOUETTE (Fallback when no photo)
+   ========================================================================== */
+
+.body-silhouette {
+  width: 200px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.body-silhouette-3d {
+  width: 250px;
+  height: 500px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.silhouette-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+/* ==========================================================================
+   OUTFIT ITEMS OVERLAY
+   ========================================================================== 
+   
+   Clothing items layered on top of the body.
+   
+   ========================================================================== */
+
+.outfit-items-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 500px;
+  pointer-events: none;
+}
+
+/* Item layers for different clothing types */
+.item-layer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+}
+
+.item-layer.head {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+}
+
+.item-layer.torso {
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  z-index: 8;
+}
+
+.item-layer.legs {
+  top: 280px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 160px;
+  z-index: 6;
+}
+
+.item-layer.feet {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 80px;
+  z-index: 4;
+}
+
+.item-layer.accessories {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 400px;
+  z-index: 12;
+}
+
+.item-layer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+/* ==========================================================================
+   ROTATION CONTROLS
+   ========================================================================== */
+
+.rotation-controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--sf-space-3);
+  margin-top: var(--sf-space-4);
+}
+
+.rotation-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-surface);
+  border: 2px solid var(--sf-border);
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--sf-transition-fast);
+}
+
+.rotation-btn:hover {
+  border-color: var(--sf-primary);
+  color: var(--sf-primary);
+}
+
+/* Quick view buttons */
+.quick-view-btns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.quick-view-btn {
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.quick-view-btn:hover {
+  border-color: var(--sf-primary);
+  background: #f0f7ff;
+  color: var(--sf-primary);
+}
+
+/* Rotation hint overlay */
+.rotation-hint {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  z-index: 10;
+  pointer-events: none;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Positioning mode hint - moved to right side */
+.rotation-hint.positioning-mode-hint {
+  top: 50%;
+  left: auto;
+  right: 15px;
+  transform: translateY(-50%);
+  text-align: center;
+  line-height: 1.6;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Positioning instructions that appear in the sidebar next to AI Fit Score */
+.positioning-sidebar-hint {
+  background: linear-gradient(180deg, rgba(16,24,40,0.95), rgba(30,41,59,0.95));
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.12);
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.positioning-sidebar-hint strong {
+  font-size: 13px;
+}
+
+/* ==========================================================================
+   VFR ANGLE INDICATOR
+   ========================================================================== 
+   
+   Shows which angle/view the user is currently seeing.
+   
+   ========================================================================== */
+
+.vfr-angle-indicator {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(16, 185, 129, 0.95);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(4px);
+}
+
+.vfr-angle-indicator.partial {
+  background: rgba(245, 158, 11, 0.95);
+}
+
+/* Missing angle prompt */
+.missing-angle-prompt {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* ==========================================================================
+   ZOOM CONTROLS
+   ========================================================================== */
+
+.zoom-slider {
+  width: 100%;
+  margin: 8px 0;
+}
+
+.zoom-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.zoom-btns button {
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.zoom-btns button:hover {
+  background: #f3f4f6;
+}
+
+/* ==========================================================================
+   CONTROL SECTIONS (Sidebar)
+   ========================================================================== */
+
+.control-section {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.control-section:last-child {
+  border-bottom: none;
+}
+
+.control-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--sf-text);
+}
+
+/* Control toggle button */
+.control-toggle-btn {
+  background: white;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.2s;
+}
+
+.control-toggle-btn:hover {
+  background: #f3f4f6;
+}
+
+/* ==========================================================================
+   OUTFIT ITEMS LIST (Sidebar)
+   ========================================================================== */
+
+.outfit-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.outfit-item-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  padding: 8px;
+  background: var(--sf-bg-secondary);
+  border-radius: var(--sf-radius-md);
+}
+
+.outfit-item-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--sf-radius-sm);
+  overflow: hidden;
+}
+
+.outfit-item-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.outfit-item-info {
+  flex: 1;
+}
+
+.outfit-item-name {
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-medium);
+  color: var(--sf-text);
+}
+
+.outfit-item-category {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+}
+
+/* ==========================================================================
+   AI FIT SCORING
+   ========================================================================== */
+
+.fit-score-section {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border: 2px solid #fbbf24;
+  border-radius: 12px;
+  padding: 16px !important;
+}
+
+.fit-score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.fit-score-header h4 {
+  margin: 0 !important;
+}
+
+.fit-score-badge {
+  font-size: 24px;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Score badge colors based on score */
+.fit-score-badge.score-0,
+.fit-score-badge.score-1,
+.fit-score-badge.score-2 {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.fit-score-badge.score-3 {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.fit-score-badge.score-4,
+.fit-score-badge.score-5 {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.fit-score-details {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 2px solid rgba(251, 191, 36, 0.3);
+}
+
+.score-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.score-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 40px;
+  align-items: center;
+  gap: 8px;
+}
+
+.score-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #92400e;
+}
+
+.score-bar {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.score-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 4px;
+}
+
+.score-value {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92400e;
+  text-align: right;
+}
+
+/* Fit insights */
+.fit-insights {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.insight {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.insight.success {
+  background: #ecfdf5;
+  border: 1px solid #10b981;
+}
+
+.insight.warning {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+}
+
+.insight.info {
+  background: #eff6ff;
+  border: 1px solid #3b82f6;
+}
+
+.insight strong {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.insight p {
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* ==========================================================================
+   FITTING TIPS
+   ========================================================================== */
+
+.fitting-tips {
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 13px;
+}
+
+.fitting-tips p {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  color: var(--sf-primary);
+}
+
+.fitting-tips ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.fitting-tips li {
+  margin-bottom: 4px;
+  color: var(--sf-text);
+}
+
+/* ==========================================================================
+   CLOTHING ITEM POSITIONING (Drag & Drop)
+   ========================================================================== */
+
+.clothing-item-positioning {
+  position: relative;
+  outline: 2px solid rgba(59, 130, 246, 0.5);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3);
+  animation: pulseOutline 2s ease-in-out infinite;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  will-change: transform;
+}
+
+.clothing-item-positioning:active {
+  outline: 3px solid rgba(34, 197, 94, 0.7);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.3), 0 0 25px rgba(34, 197, 94, 0.4);
+  animation: none;
+  cursor: grabbing;
+}
+
+@keyframes pulseOutline {
+  0%, 100% {
+    outline-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2), 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    outline-color: rgba(59, 130, 246, 0.7);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3), 0 0 25px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Crosshair lines */
+.clothing-item-positioning::before,
+.clothing-item-positioning::after {
+  content: '';
+  position: absolute;
+  background: transparent;
+  border: none;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.clothing-item-positioning:active::before,
+.clothing-item-positioning:active::after {
+  display: none;
+}
+
+.clothing-item-positioning::before {
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 60%;
+  transform: translate(-50%, -50%);
+  border-left: 1px dashed rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.clothing-item-positioning::after {
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 1px;
+  transform: translate(-50%, -50%);
+  border-top: 1px dashed rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Center dot */
+.clothing-crosshair-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 1001;
+}
+
+/* Scale indicator */
+.clothing-scale-indicator {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1002;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: scaleIndicatorFadeIn 0.2s ease;
+}
+
+/* Scale controls with +/- buttons */
+.clothing-scale-controls {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 1002;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: scaleIndicatorFadeIn 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.clothing-scale-controls .scale-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--sf-primary, #FF69B4), var(--sf-primary-dark, #FF1493));
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
+  pointer-events: auto;
+}
+
+.clothing-scale-controls .scale-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.5);
+}
+
+.clothing-scale-controls .scale-btn:active {
+  transform: scale(0.95);
+}
+
+.clothing-scale-controls .scale-btn-minus {
+  background: linear-gradient(135deg, #888, #666);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.clothing-scale-controls .scale-btn-minus:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.clothing-scale-controls .scale-value {
+  min-width: 45px;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Scale controls positioned at bottom for pants/shoes */
+.clothing-scale-controls.scale-controls-bottom {
+  top: auto;
+  bottom: 5px;
+}
+
+@keyframes scaleIndicatorFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE VFR
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .vfr-page-header h1 {
+    font-size: 1.8em;
+  }
+  
+  .vfr-page-header p {
+    font-size: 0.9em;
+  }
+  
+  .user-body-photo {
+    width: 240px;
+    height: 400px;
+  }
+  
+  .vfr-items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--sf-space-3);
+  }
+  
+  .quick-view-btns {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .quick-view-btn {
+    padding: 8px 4px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .fitting-room-sidebar.enhanced {
+    width: 280px;
+  }
+
+  .outfit-items-list {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 900px) {
+  .fitting-room-modal.enhanced {
+    max-height: 95vh;
+  }
+
+  .fitting-room-content {
+    flex-direction: column;
+  }
+
+  .fitting-room-sidebar.enhanced {
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .body-template.enhanced {
+    min-height: 450px;
+  }
+
+  .rotation-hint {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}

@@ -1,0 +1,446 @@
+/* ============================================================================
+   SNAPFIT BUTTON COMPONENTS
+   ============================================================================
+   
+   Button styles for all interactive button elements in SnapFit.
+   
+   BUTTON VARIANTS:
+   - .sf-btn : Base button styles
+   - .sf-btn-primary : Primary action buttons (main CTAs)
+   - .sf-btn-secondary : Secondary actions
+   - .sf-btn-outline : Outlined buttons
+   - .sf-btn-ghost : Text-only buttons
+   - .sf-btn-danger : Destructive actions
+   - .sf-btn-gradient : Gradient background buttons
+   
+   BUTTON SIZES:
+   - .sf-btn-sm : Small buttons
+   - .sf-btn-lg : Large buttons
+   - .sf-btn-xl : Extra large buttons
+   
+   BUTTON STATES:
+   - :disabled : Disabled state
+   - .sf-btn-loading : Loading state
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   BASE BUTTON STYLES
+   ========================================================================== */
+
+.sf-btn {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-2);
+  
+  /* Sizing */
+  padding: 10px 20px;
+  min-height: 44px;
+  
+  /* Typography */
+  font-family: var(--sf-font-family);
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-semibold);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* Visual */
+  border: 2px solid transparent;
+  border-radius: var(--sf-radius-md);
+  cursor: pointer;
+  
+  /* Animation */
+  transition: var(--sf-transition-normal);
+  
+  /* Accessibility */
+  user-select: none;
+}
+
+.sf-btn:focus-visible {
+  outline: 2px solid var(--sf-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   PRIMARY BUTTON
+   ========================================================================== 
+   
+   Main call-to-action button. Use for primary actions like "Save", "Submit".
+   
+   ========================================================================== */
+
+.sf-btn-primary {
+  background: var(--sf-primary);
+  color: var(--sf-text-inverted);
+  border-color: var(--sf-primary);
+}
+
+.sf-btn-primary:hover:not(:disabled) {
+  background: var(--sf-primary-hover);
+  border-color: var(--sf-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--sf-shadow-primary);
+}
+
+.sf-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   SECONDARY BUTTON
+   ========================================================================== 
+   
+   Secondary actions. Use alongside primary buttons.
+   
+   ========================================================================== */
+
+.sf-btn-secondary {
+  background: var(--sf-bg-secondary);
+  color: var(--sf-text);
+  border-color: var(--sf-border);
+}
+
+.sf-btn-secondary:hover:not(:disabled) {
+  background: var(--sf-border);
+  border-color: var(--sf-border-dark);
+}
+
+/* ==========================================================================
+   OUTLINE BUTTON
+   ========================================================================== 
+   
+   Bordered button with transparent background.
+   
+   ========================================================================== */
+
+.sf-btn-outline {
+  background: transparent;
+  color: var(--sf-primary);
+  border-color: var(--sf-primary);
+}
+
+.sf-btn-outline:hover:not(:disabled) {
+  background: var(--sf-primary);
+  color: var(--sf-text-inverted);
+}
+
+/* ==========================================================================
+   GHOST BUTTON
+   ========================================================================== 
+   
+   Text-only button with no background or border.
+   
+   ========================================================================== */
+
+.sf-btn-ghost {
+  background: transparent;
+  color: var(--sf-text);
+  border-color: transparent;
+}
+
+.sf-btn-ghost:hover:not(:disabled) {
+  background: var(--sf-bg-secondary);
+}
+
+/* ==========================================================================
+   DANGER BUTTON
+   ========================================================================== 
+   
+   Destructive actions like "Delete", "Remove".
+   
+   ========================================================================== */
+
+.sf-btn-danger {
+  background: var(--sf-error);
+  color: var(--sf-text-inverted);
+  border-color: var(--sf-error);
+}
+
+.sf-btn-danger:hover:not(:disabled) {
+  background: var(--sf-error-dark);
+  border-color: var(--sf-error-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35);
+}
+
+/* ==========================================================================
+   SUCCESS BUTTON
+   ========================================================================== */
+
+.sf-btn-success {
+  background: var(--sf-success);
+  color: var(--sf-text-inverted);
+  border-color: var(--sf-success);
+}
+
+.sf-btn-success:hover:not(:disabled) {
+  background: var(--sf-success-dark);
+  border-color: var(--sf-success-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--sf-shadow-success);
+}
+
+/* ==========================================================================
+   GRADIENT BUTTON
+   ========================================================================== 
+   
+   Eye-catching gradient buttons for featured CTAs.
+   
+   ========================================================================== */
+
+.sf-btn-gradient {
+  background: var(--sf-gradient-primary);
+  color: var(--sf-text-inverted);
+  border-color: transparent;
+}
+
+.sf-btn-gradient:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--sf-shadow-primary);
+}
+
+/* Secondary gradient variant */
+.sf-btn-gradient-secondary {
+  background: var(--sf-gradient-secondary);
+  color: var(--sf-text-inverted);
+  border-color: transparent;
+}
+
+.sf-btn-gradient-secondary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(240, 147, 251, 0.4);
+}
+
+/* Accent gradient variant */
+.sf-btn-gradient-accent {
+  background: var(--sf-gradient-accent);
+  color: var(--sf-text-inverted);
+  border-color: transparent;
+}
+
+/* ==========================================================================
+   BUTTON SIZES
+   ========================================================================== */
+
+/* Small button */
+.sf-btn-sm {
+  padding: 6px 12px;
+  min-height: 32px;
+  font-size: var(--sf-text-xs);
+  border-radius: var(--sf-radius-sm);
+}
+
+/* Large button */
+.sf-btn-lg {
+  padding: 14px 28px;
+  min-height: 52px;
+  font-size: var(--sf-text-base);
+  border-radius: var(--sf-radius-lg);
+}
+
+/* Extra large button */
+.sf-btn-xl {
+  padding: 18px 36px;
+  min-height: 60px;
+  font-size: var(--sf-text-lg);
+  border-radius: var(--sf-radius-lg);
+}
+
+/* Full width button */
+.sf-btn-full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   BUTTON WITH ICON
+   ========================================================================== */
+
+.sf-btn-icon {
+  padding: 10px;
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.sf-btn-icon.sf-btn-sm {
+  padding: 6px;
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.sf-btn-icon.sf-btn-lg {
+  padding: 14px;
+  min-height: 52px;
+  min-width: 52px;
+}
+
+/* ==========================================================================
+   DISABLED STATE
+   ========================================================================== */
+
+.sf-btn:disabled,
+.sf-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   LOADING STATE
+   ========================================================================== */
+
+.sf-btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.sf-btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: sf-btn-spin 0.6s linear infinite;
+}
+
+@keyframes sf-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================================================
+   BUTTON GROUP
+   ========================================================================== 
+   
+   Group buttons together with connected borders.
+   
+   ========================================================================== */
+
+.sf-btn-group {
+  display: inline-flex;
+}
+
+.sf-btn-group .sf-btn {
+  border-radius: 0;
+}
+
+.sf-btn-group .sf-btn:first-child {
+  border-radius: var(--sf-radius-md) 0 0 var(--sf-radius-md);
+}
+
+.sf-btn-group .sf-btn:last-child {
+  border-radius: 0 var(--sf-radius-md) var(--sf-radius-md) 0;
+}
+
+.sf-btn-group .sf-btn:not(:first-child) {
+  margin-left: -2px;
+}
+
+/* ==========================================================================
+   LEGACY BUTTON CLASSES (For compatibility)
+   ========================================================================== 
+   
+   These classes maintain compatibility with existing code.
+   Consider migrating to .sf-btn-* classes over time.
+   
+   ========================================================================== */
+
+/* Site button - legacy primary */
+.site-btn {
+  background: var(--sf-gradient-primary);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.site-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+}
+
+.site-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Secondary site button */
+.site-btn.secondary {
+  background: #f3f4f6;
+  color: var(--sf-text);
+}
+
+.site-btn.secondary:hover {
+  background: #e5e7eb;
+  box-shadow: none;
+}
+
+/* Small site button */
+.site-btn.small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+/* Background remove button (Add Item form) */
+.bg-remove-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.bg-remove-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(240, 147, 251, 0.4);
+}
+
+.bg-remove-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bg-remove-btn.bg-removed {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+/* Change photo button */
+.change-photo-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.change-photo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* AI assist button */
+.ai-assist-btn {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  color: white;
+}
+
+.ai-assist-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(250, 112, 154, 0.4);
+}

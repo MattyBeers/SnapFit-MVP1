@@ -1,0 +1,352 @@
+/* ============================================================================
+   SNAPFIT PROFILE PAGE STYLES
+   ============================================================================
+   
+   Styles for the user profile page.
+   
+   SECTIONS:
+   - .profile-page : Main page container
+   - .profile-header : Profile info section
+   - .profile-stats : Follower/following counts
+   - .profile-tabs : Content tabs
+   - .profile-grid : User's outfits grid
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   PAGE CONTAINER
+   ========================================================================== */
+
+.profile-page {
+  min-height: 100vh;
+  padding-bottom: calc(var(--sf-space-6) + var(--sf-bottom-nav-height));
+  background: var(--sf-bg);
+}
+
+@media (min-width: 769px) {
+  .profile-page {
+    padding-top: var(--sf-header-height);
+    padding-bottom: var(--sf-space-6);
+  }
+}
+
+/* ==========================================================================
+   PROFILE HEADER
+   ========================================================================== */
+
+.profile-header {
+  background: var(--sf-surface);
+  padding: var(--sf-space-6);
+  text-align: center;
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.profile-avatar-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--sf-space-4);
+}
+
+.profile-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--sf-radius-full);
+  object-fit: cover;
+  border: 4px solid var(--sf-surface);
+  box-shadow: var(--sf-shadow-lg);
+}
+
+.profile-avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-gradient-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  font-weight: var(--sf-font-bold);
+}
+
+/* Verified badge */
+.profile-verified-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  width: 28px;
+  height: 28px;
+  background: var(--sf-primary);
+  border-radius: var(--sf-radius-full);
+  border: 3px solid var(--sf-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+}
+
+/* Profile name and username */
+.profile-name {
+  font-size: var(--sf-text-2xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+  margin-bottom: 4px;
+}
+
+.profile-username {
+  font-size: var(--sf-text-base);
+  color: var(--sf-muted);
+  margin-bottom: var(--sf-space-3);
+}
+
+.profile-bio {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+  max-width: 400px;
+  margin: 0 auto var(--sf-space-4);
+  line-height: var(--sf-leading-relaxed);
+}
+
+/* ==========================================================================
+   PROFILE STATS
+   ========================================================================== */
+
+.profile-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--sf-space-8);
+  margin-bottom: var(--sf-space-5);
+}
+
+.profile-stat {
+  text-align: center;
+}
+
+.profile-stat-value {
+  font-size: var(--sf-text-xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+}
+
+.profile-stat-label {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   PROFILE ACTIONS
+   ========================================================================== */
+
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--sf-space-3);
+}
+
+.profile-edit-btn {
+  padding: 10px 24px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  background: var(--sf-surface);
+  color: var(--sf-text);
+  font-weight: var(--sf-font-semibold);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+}
+
+.profile-edit-btn:hover {
+  background: var(--sf-bg-secondary);
+}
+
+.profile-share-btn {
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  background: var(--sf-surface);
+  color: var(--sf-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--sf-transition-fast);
+}
+
+.profile-share-btn:hover {
+  background: var(--sf-bg-secondary);
+  color: var(--sf-text);
+}
+
+/* ==========================================================================
+   PROFILE TABS
+   ========================================================================== */
+
+.profile-tabs {
+  display: flex;
+  background: var(--sf-surface);
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.profile-tab {
+  flex: 1;
+  padding: var(--sf-space-4);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: var(--sf-font-medium);
+  color: var(--sf-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-2);
+  position: relative;
+  transition: color 0.2s;
+}
+
+.profile-tab:hover {
+  color: var(--sf-text);
+}
+
+.profile-tab.active {
+  color: var(--sf-text);
+}
+
+.profile-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sf-primary);
+}
+
+.profile-tab-icon {
+  font-size: 20px;
+}
+
+/* ==========================================================================
+   PROFILE CONTENT GRID
+   ========================================================================== */
+
+.profile-content {
+  padding: var(--sf-space-4);
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.profile-grid-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.profile-grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.profile-grid-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay on hover */
+.profile-grid-item-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-4);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.profile-grid-item:hover .profile-grid-item-overlay {
+  opacity: 1;
+}
+
+.profile-grid-item-stat {
+  color: white;
+  font-weight: var(--sf-font-semibold);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   EMPTY PROFILE STATE
+   ========================================================================== */
+
+.profile-empty {
+  text-align: center;
+  padding: var(--sf-space-12) var(--sf-space-4);
+}
+
+.profile-empty-icon {
+  font-size: 64px;
+  margin-bottom: var(--sf-space-4);
+  opacity: 0.5;
+}
+
+.profile-empty-title {
+  font-size: var(--sf-text-lg);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+.profile-empty-text {
+  color: var(--sf-muted);
+  margin-bottom: var(--sf-space-5);
+}
+
+/* ==========================================================================
+   RESPONSIVE PROFILE
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .profile-header {
+    padding: var(--sf-space-4);
+  }
+  
+  .profile-avatar-container {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-stats {
+    gap: var(--sf-space-6);
+  }
+  
+  .profile-grid {
+    gap: 2px;
+  }
+}
+
+@media (min-width: 640px) {
+  .profile-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .profile-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

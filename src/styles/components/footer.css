@@ -1,0 +1,190 @@
+/* ============================================================================
+   SNAPFIT FOOTER COMPONENT
+   ============================================================================
+   
+   Footer styles for site footer section.
+   Horizontal layout: My Account | Help | Legal | About Us | Contact Us | Email Sign Up
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   MAIN FOOTER
+   ========================================================================== */
+
+.site-footer {
+  background: var(--sf-text);
+  color: var(--sf-text-inverted);
+  padding: var(--sf-space-8) var(--sf-space-6);
+  margin-top: auto;
+}
+
+.site-footer__container {
+  max-width: var(--sf-container-xl);
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   FOOTER ROW - HORIZONTAL LAYOUT
+   ========================================================================== */
+
+.footer-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--sf-space-8);
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 140px;
+}
+
+.footer-head {
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-semibold);
+  margin-bottom: var(--sf-space-3);
+  color: var(--sf-text-inverted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: var(--sf-space-2);
+}
+
+.footer-list a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: var(--sf-text-sm);
+  transition: color 0.2s ease;
+}
+
+.footer-list a:hover {
+  color: var(--sf-text-inverted);
+}
+
+/* ==========================================================================
+   FOOTER SUBSCRIBE SECTION
+   ========================================================================== */
+
+.footer-subscribe {
+  min-width: 200px;
+  flex: 1.5;
+}
+
+.footer-subscribe__form {
+  display: flex;
+  gap: var(--sf-space-2);
+}
+
+.footer-input {
+  flex: 1;
+  padding: var(--sf-space-2) var(--sf-space-3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--sf-radius-md);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--sf-text-inverted);
+  font-size: var(--sf-text-sm);
+  transition: all 0.2s ease;
+}
+
+.footer-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-input:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.footer-submit {
+  padding: var(--sf-space-2) var(--sf-space-4);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   FOOTER BOTTOM
+   ========================================================================== */
+
+.footer-bottom {
+  margin-top: var(--sf-space-6);
+  padding-top: var(--sf-space-4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--sf-space-4);
+  font-size: var(--sf-text-sm);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-bottom a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-bottom a:hover {
+  color: var(--sf-text-inverted);
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-2);
+}
+
+/* ==========================================================================
+   RESPONSIVE - STACK ON MOBILE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .footer-row {
+    flex-direction: column;
+    gap: var(--sf-space-6);
+  }
+  
+  .footer-column {
+    min-width: 100%;
+  }
+  
+  .footer-subscribe__form {
+    flex-direction: column;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE FOOTER
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: var(--sf-space-8) var(--sf-space-4);
+    /* Account for bottom navigation */
+    padding-bottom: calc(var(--sf-space-8) + var(--sf-bottom-nav-height));
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

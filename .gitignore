@@ -1,0 +1,46 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local env file (do not commit secrets)
+.env
+
+# Ignore any env files
+*.env
+
+# Vite build output
+dist/
+
+# Public demo placeholders (keep in repo but not real assets)
+public/demo/*.placeholder
+
+# Server local env
+server/.env
+
+# Personal Markdown files (local notes / submission drafts)
+/# Personal markdown moved to private/
+private/
+
+# Ignore markdown files if you don't want them in the repo
+*.md

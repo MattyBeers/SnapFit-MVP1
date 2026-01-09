@@ -1,0 +1,683 @@
+/* Backup of src/styles.css before reset - created by Copilot agent */
+
+/* ============================
+  SNAPFIT STYLES - CONSOLIDATED
+  ============================ */
+
+/* 9. NAV / TAB-LIKE BOTTOM BAR (OPTIONAL)
+   ====================================== */
+
+.sf-bottom-nav {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 0 6px;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.75),
+    transparent
+  );
+  backdrop-filter: blur(24px);
+}
+
+.sf-bottom-nav-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: radial-gradient(circle at top left, rgba(34, 211, 238, 0.2), transparent),
+              radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.18), transparent),
+              rgba(15, 23, 42, 0.96);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.sf-nav-item {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--sf-text-muted);
+  padding: 6px 0;
+  cursor: pointer;
+  border-radius: 999px;
+  transition:
+    color var(--sf-duration-fast) var(--sf-ease),
+    background var(--sf-duration-fast) var(--sf-ease),
+    transform var(--sf-duration-fast) var(--sf-ease);
+}
+
+.sf-nav-item--active {
+  color: #f9fafb;
+  background: rgba(15, 23, 42, 0.9);
+  transform: translateY(-1px);
+}
+/* Design tokens (light theme) */
+:root {
+  --sf-bg: #f7fafc;
+  --sf-bg-elevated: #ffffff;
+  --sf-bg-soft: #f3f7fb;
+  --sf-surface: #ffffff;
+  --sf-surface-subtle: #fbfdff;
+  --sf-border-subtle: rgba(2, 6, 23, 0.06);
+
+  --sf-primary-start: #56d586;
+  --sf-primary-end: #00b7e6;
+  --sf-primary-soft: linear-gradient(135deg, rgba(86,213,134,0.12), rgba(0,183,230,0.08));
+
+  --sf-accent: #00aaff;
+  --sf-accent-soft: rgba(0, 170, 255, 0.08);
+
+  --sf-text-main: #081126;
+  --sf-text-muted: #56687a;
+  --sf-text-soft: #8b98a6;
+  --sf-text-on-dark: #081126;
+
+  --sf-danger: #ff6b6b;
+  --sf-success: #34c38f;
+
+  --sf-radius-xl: 20px;
+  --sf-radius-lg: 14px;
+  --sf-radius-md: 8px;
+  --sf-radius-pill: 999px;
+  --sf-shadow-soft: 0 8px 24px rgba(9, 20, 34, 0.06);
+  --sf-shadow-subtle: 0 6px 18px rgba(9, 20, 34, 0.05);
+
+  --sf-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --sf-duration-fast: 140ms;
+  --sf-duration-base: 200ms;
+}
+
+/* 3. APP SHELL
+   ============ */
+
+.sf-app {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(86, 213, 134, 0.06), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(0, 183, 230, 0.04), transparent 60%),
+    var(--sf-bg);
+  color: var(--sf-text-main);
+}
+
+/* Centered app container */
+.sf-shell {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Top app title / logo row */
+.sf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sf-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sf-logo-mark {
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background: radial-gradient(circle at 20% 20%, #f97316, #f97316 40%, #0ea5e9 100%);
+  box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
+}
+
+.sf-logo-text {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  font-size: 15px;
+  color: var(--sf-text-on-dark);
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+/* Minimal top-right actions */
+.sf-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--sf-text-soft);
+}
+
+/* 4. TYPOGRAPHY HELPERS
+   ===================== */
+
+.sf-title-lg {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.sf-subtitle {
+  font-size: 13px;
+  color: var(--sf-text-soft);
+}
+
+.sf-section-title {
+  font-size: 16px;
+  border-radius: 999px;
+  position: relative;
+  transition:
+    color var(--sf-duration-fast) var(--sf-ease),
+    transform var(--sf-duration-fast) var(--sf-ease),
+    box-shadow var(--sf-duration-fast) var(--sf-ease);
+  will-change: transform, box-shadow;
+}
+
+/* animated underline/highlight */
+.sf-nav-item::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--sf-primary-start), var(--sf-primary-end));
+  border-radius: 999px;
+  transition: width 220ms var(--sf-ease), opacity 180ms var(--sf-ease);
+  opacity: 0;
+  font-size: 11px;
+
+.sf-nav-item:hover {
+  color: var(--sf-text-main);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 18px rgba(6,24,45,0.06);
+}
+
+.sf-nav-item:hover::after {
+  width: 36px;
+  opacity: 1;
+}
+
+.sf-nav-item--active {
+  color: var(--sf-text-main);
+  transform: translateY(-2px);
+}
+
+.sf-nav-item--active::after {
+  width: 44px;
+  opacity: 1;
+}
+
+/* subtle ripple on click (prefers-reduced-motion excluded) */
+@media (prefers-reduced-motion: no-preference) {
+  .sf-nav-item:active {
+    transform: translateY(0) scale(0.995);
+    transition: transform 90ms ease;
+  }
+/* 5. CARDS & SURFACES
+   =================== */
+
+.sf-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-lg);
+  border: 1px solid var(--sf-border-subtle);
+  padding: 14px 16px;
+  box-shadow: var(--sf-shadow-soft);
+  backdrop-filter: blur(6px);
+}
+
+.sf-card-subtle {
+  background: var(--sf-surface-subtle);
+  border-radius: var(--sf-radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 10px 12px;
+}
+
+.sf-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: var(--sf-radius-pill);
+  font-size: 11px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: var(--sf-text-muted);
+}
+
+
+/* 6. BUTTONS
+   ========== */
+
+.sf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: var(--sf-radius-pill);
+  border: 1px solid transparent;
+  background: var(--sf-surface);
+  color: var(--sf-text-main);
+  cursor: pointer;
+  transition:
+    background var(--sf-duration-base) var(--sf-ease),
+    transform var(--sf-duration-base) var(--sf-ease),
+    box-shadow var(--sf-duration-base) var(--sf-ease),
+    border-color var(--sf-duration-base) var(--sf-ease);
+}
+
+.sf-btn-primary {
+  background: linear-gradient(135deg, var(--sf-primary-start), var(--sf-primary-end));
+  color: #042034;
+  box-shadow: 0 8px 28px rgba(6, 24, 45, 0.08);
+}
+
+.sf-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(6, 24, 45, 0.12);
+}
+
+.sf-btn-outline {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.4);
+  color: var(--sf-text-main);
+}
+
+.sf-btn-outline:hover {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.7);
+}
+
+.sf-btn-ghost {
+  background: transparent;
+  border-radius: var(--sf-radius-pill);
+  color: var(--sf-text-soft);
+  border: none;
+}
+
+.sf-btn-ghost:hover {
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.sf-btn-full {
+  width: 100%;
+}
+
+/* small button */
+.sf-btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+
+/* 7. INPUTS & FORMS
+   ================= */
+
+.sf-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.sf-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--sf-text-muted);
+}
+
+.sf-input,
+.sf-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--sf-radius-md);
+  border: 1px solid rgba(9,20,34,0.06);
+  background: var(--sf-surface);
+  color: var(--sf-text-main);
+  font-size: 13px;
+  outline: none;
+  box-shadow: none;
+  transition:
+    border-color var(--sf-duration-fast) var(--sf-ease),
+    box-shadow var(--sf-duration-fast) var(--sf-ease),
+    background var(--sf-duration-fast) var(--sf-ease);
+}
+
+.sf-input::placeholder {
+  color: var(--sf-text-soft);
+}
+
+.sf-input:focus,
+.sf-select:focus {
+  border-color: var(--sf-accent);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.5);
+  background: rgba(15, 23, 42, 0.98);
+}
+
+.sf-input-inline-row {
+  display: flex;
+  gap: 8px;
+}
+
+
+/* 8. SIMPLE LAYOUT UTILS
+   ====================== */
+
+.sf-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sf-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sf-row-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sf-badge-accent {
+  background: var(--sf-accent-soft);
+  color: #e0f2fe;
+  border-radius: var(--sf-radius-pill);
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+.sf-badge-primary {
+  background: var(--sf-primary-soft);
+  color: #fed7aa;
+  border-radius: var(--sf-radius-pill);
+  padding: 4px 8px;
+  font-size: 11px;
+}
+
+
+/* 9. NAV / TAB-LIKE BOTTOM BAR (OPTIONAL)
+   ====================================== */
+
+.sf-bottom-nav {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 0 6px;
+  /* lighter beige/grey gradient that blends with the page */
+  background: linear-gradient(
+    to top,
+    rgba(248, 246, 243, 0.98),
+    rgba(250, 250, 249, 0.92),
+    transparent
+  );
+  backdrop-filter: blur(8px);
+}
+.sf-bottom-nav {
+  position: fixed;
+  bottom: 18px;
+  left: 20px;
+  right: 20px;
+  padding: 12px 0 10px;
+  display: flex;
+  justify-content: center;
+  z-index: 900;
+  /* subtle light surface so nav is clearly visible */
+  background: transparent;
+}
+
+.sf-bottom-nav-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(9,20,34,0.06);
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), var(--sf-bg-elevated));
+  background-image: radial-gradient(circle at 10% 20%, rgba(86,213,134,0.06), transparent),
+                    radial-gradient(circle at 90% 80%, rgba(0,183,230,0.04), transparent),
+                    linear-gradient(180deg, rgba(255,255,255,0.92), var(--sf-bg-elevated));
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.sf-bottom-nav-inner {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(9,20,34,0.06);
+  background: linear-gradient(180deg, #fff, #fbfdff);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 10px 30px rgba(9,20,34,0.06);
+}
+
+.sf-nav-item {
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  color: var(--sf-text-muted);
+  padding: 6px 0;
+  cursor: pointer;
+  border-radius: 999px;
+  transition:
+    color var(--sf-duration-fast) var(--sf-ease),
+    background var(--sf-duration-fast) var(--sf-ease),
+    transform var(--sf-duration-fast) var(--sf-ease);
+}
+
+.sf-nav-item--active {
+  color: #f9fafb;
+  background: rgba(15, 23, 42, 0.9);
+  transform: translateY(-1px);
+}
+
+
+/* 10. ANIMATIONS (SUBTLE)
+   ======================= */
+
+.sf-fade-in {
+  animation: sf-fade-in 260ms var(--sf-ease) forwards;
+}
+
+@keyframes sf-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sf-slide-up {
+  animation: sf-slide-up 300ms var(--sf-ease) forwards;
+}
+
+@keyframes sf-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 11. HEADER COMPONENT STYLES
+   =========================== */
+
+.header {
+  position: fixed;
+  top: 12px;
+  left: 24px;
+  right: 24px;
+  height: 72px;
+  background: rgba(255,255,255,0.9);
+  border-radius: var(--sf-radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  z-index: 1000;
+  box-shadow: var(--sf-shadow-subtle);
+}
+.sf-nav-item--active {
+  color: #042034;
+  transform: translateY(-2px);
+}
+
+.header__logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.header__logo-img {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  margin-right: 12px;
+  object-fit: cover;
+.sf-nav-item--active {
+  background: linear-gradient(90deg, var(--sf-primary-start), var(--sf-primary-end));
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(0,183,230,0.08);
+}
+  box-shadow: 0 8px 20px rgba(9,20,34,0.06);
+  background: linear-gradient(135deg, rgba(86,213,134,0.12), rgba(0,183,230,0.08));
+  flex-shrink: 0;
+}
+
+.header__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--sf-text-main);
+  letter-spacing: -0.3px;
+}
+
+/* Auth Section */
+.header__auth-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__user-email {
+  color: #e5e7eb;
+  font-size: 14px;
+}
+
+.header__logout-btn {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.header__logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Login Form */
+.header__login-form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.header__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.header__input {
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e7eb;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 12px;
+  width: 150px;
+  outline: none;
+}
+
+.header__input::placeholder {
+  color: rgba(229, 231, 235, 0.5);
+}
+
+.header__error {
+  color: #ff6b6b;
+  font-size: 11px;
+  margin: 0;
+}
+
+.header__login-btn {
+  padding: 8px 16px;
+  background: #00d4ff;
+  color: #020617;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  height: 48px;
+  transition: all 0.3s ease;
+}
+
+.header__login-btn:hover:not(:disabled) {
+  background: #00e5ff;
+}
+
+.header__login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* 12. FOOTER COMPONENT STYLES
+   =========================== */
+
+.footer {
+  position: fixed;
+  bottom: 12px;
+  left: 24px;
+  right: 24px;
+  height: 56px;
+  background: var(--sf-bg-elevated);
+  border-top: 1px solid var(--sf-border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 24px;
+  padding-right: 24px;
+  z-index: 100;
+  box-shadow: var(--sf-shadow-subtle);
+  border-radius: 12px;
+}
+
+.footer__copyright {
+  font-size: 14px;
+  color: var(--sf-text-muted);
+}

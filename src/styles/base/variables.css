@@ -1,0 +1,285 @@
+/* ============================================================================
+   SNAPFIT CSS VARIABLES (Design Tokens)
+   ============================================================================
+   
+   This file contains all CSS custom properties (variables) used throughout
+   SnapFit. Modifying these values will update the appearance globally.
+   
+   USAGE: Reference variables using var(--variable-name)
+   EXAMPLE: background: var(--sf-primary);
+   
+   ============================================================================ */
+
+:root {
+  /* ==========================================================================
+     COLOR PALETTE - Primary Brand Colors
+     ========================================================================== */
+  
+  /* Primary purple/violet - Main brand color for CTAs, links, highlights */
+  --sf-primary: #6366f1;
+  --sf-primary-hover: #4f46e5;
+  --sf-primary-light: #e0e7ff;
+  --sf-primary-dark: #4338ca;
+  
+  /* Secondary accent colors */
+  --sf-secondary: #8b5cf6;
+  --sf-secondary-hover: #7c3aed;
+  
+  /* ==========================================================================
+     COLOR PALETTE - Status & Feedback Colors
+     ========================================================================== */
+  
+  /* Success - Confirmations, completed actions, positive feedback */
+  --sf-success: #10b981;
+  --sf-success-light: #d1fae5;
+  --sf-success-dark: #059669;
+  
+  /* Warning - Cautions, alerts, attention needed */
+  --sf-warning: #f59e0b;
+  --sf-warning-light: #fef3c7;
+  --sf-warning-dark: #d97706;
+  
+  /* Error/Danger - Errors, destructive actions, critical alerts */
+  --sf-error: #ef4444;
+  --sf-error-light: #fee2e2;
+  --sf-error-dark: #dc2626;
+  
+  /* Info - Informational messages, tips, neutral highlights */
+  --sf-info: #3b82f6;
+  --sf-info-light: #eff6ff;
+  --sf-info-dark: #2563eb;
+  
+  /* ==========================================================================
+     COLOR PALETTE - Text Colors
+     ========================================================================== */
+  
+  /* Primary text - Headings, body copy */
+  --sf-text: #1f2937;
+  --sf-text-secondary: #374151;
+  
+  /* Muted text - Captions, placeholders, secondary info */
+  --sf-muted: #6b7280;
+  --sf-muted-light: #9ca3af;
+  
+  /* Inverted text - Text on dark backgrounds */
+  --sf-text-inverted: #ffffff;
+  
+  /* ==========================================================================
+     COLOR PALETTE - Background Colors
+     ========================================================================== */
+  
+  /* Page backgrounds */
+  --sf-bg: #f9fafb;
+  --sf-bg-secondary: #f3f4f6;
+  --sf-bg-white: #ffffff;
+  
+  /* Surface colors - Cards, modals, elevated elements */
+  --sf-surface: #ffffff;
+  --sf-surface-hover: #f9fafb;
+  
+  /* ==========================================================================
+     COLOR PALETTE - Border & Divider Colors
+     ========================================================================== */
+  
+  --sf-border: #e5e7eb;
+  --sf-border-light: #f3f4f6;
+  --sf-border-dark: #d1d5db;
+  
+  /* ==========================================================================
+     GRADIENTS - Brand Gradients
+     ========================================================================== */
+  
+  /* Primary gradient - Hero sections, CTAs, featured elements */
+  --sf-gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  /* Secondary gradients - Accent elements */
+  --sf-gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --sf-gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+  --sf-gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  --sf-gradient-gold: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  
+  /* ==========================================================================
+     TYPOGRAPHY - Font Families
+     ========================================================================== */
+  
+  /* Primary font - UI, body text */
+  --sf-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  
+  /* Display font - Headings, hero text (if different) */
+  --sf-font-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Monospace - Code, technical info */
+  --sf-font-mono: 'SF Mono', 'Fira Code', Consolas, monospace;
+  
+  /* ==========================================================================
+     TYPOGRAPHY - Font Sizes
+     ========================================================================== */
+  
+  --sf-text-xs: 0.75rem;     /* 12px - Small labels, captions */
+  --sf-text-sm: 0.875rem;    /* 14px - Secondary text, buttons */
+  --sf-text-base: 1rem;      /* 16px - Body text */
+  --sf-text-lg: 1.125rem;    /* 18px - Large body, card titles */
+  --sf-text-xl: 1.25rem;     /* 20px - Section headings */
+  --sf-text-2xl: 1.5rem;     /* 24px - Page headings */
+  --sf-text-3xl: 1.875rem;   /* 30px - Hero subheadings */
+  --sf-text-4xl: 2.25rem;    /* 36px - Hero headings */
+  --sf-text-5xl: 3rem;       /* 48px - Large hero text */
+  
+  /* ==========================================================================
+     TYPOGRAPHY - Font Weights
+     ========================================================================== */
+  
+  --sf-font-light: 300;
+  --sf-font-normal: 400;
+  --sf-font-medium: 500;
+  --sf-font-semibold: 600;
+  --sf-font-bold: 700;
+  --sf-font-extrabold: 800;
+  
+  /* ==========================================================================
+     TYPOGRAPHY - Line Heights
+     ========================================================================== */
+  
+  --sf-leading-tight: 1.25;
+  --sf-leading-snug: 1.375;
+  --sf-leading-normal: 1.5;
+  --sf-leading-relaxed: 1.625;
+  --sf-leading-loose: 2;
+  
+  /* ==========================================================================
+     SPACING - Consistent spacing scale
+     ========================================================================== */
+  
+  --sf-space-0: 0;
+  --sf-space-1: 0.25rem;     /* 4px */
+  --sf-space-2: 0.5rem;      /* 8px */
+  --sf-space-3: 0.75rem;     /* 12px */
+  --sf-space-4: 1rem;        /* 16px */
+  --sf-space-5: 1.25rem;     /* 20px */
+  --sf-space-6: 1.5rem;      /* 24px */
+  --sf-space-8: 2rem;        /* 32px */
+  --sf-space-10: 2.5rem;     /* 40px */
+  --sf-space-12: 3rem;       /* 48px */
+  --sf-space-16: 4rem;       /* 64px */
+  --sf-space-20: 5rem;       /* 80px */
+  
+  /* ==========================================================================
+     BORDER RADIUS - Rounded corners
+     ========================================================================== */
+  
+  --sf-radius-none: 0;
+  --sf-radius-sm: 0.25rem;   /* 4px - Subtle rounding */
+  --sf-radius-md: 0.5rem;    /* 8px - Default cards, inputs */
+  --sf-radius-lg: 0.75rem;   /* 12px - Large cards, modals */
+  --sf-radius-xl: 1rem;      /* 16px - Featured elements */
+  --sf-radius-2xl: 1.5rem;   /* 24px - Pills, tags */
+  --sf-radius-full: 9999px;  /* Fully rounded - Avatars, circular buttons */
+  
+  /* ==========================================================================
+     SHADOWS - Elevation & depth
+     ========================================================================== */
+  
+  /* Subtle shadow - Cards, minimal elevation */
+  --sf-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  
+  /* Default shadow - Dropdowns, floating elements */
+  --sf-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  /* Large shadow - Modals, dialogs */
+  --sf-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  /* Extra large shadow - Prominent elements */
+  --sf-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  /* 2XL shadow - Floating modals */
+  --sf-shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  /* Inner shadow - Inset elements, pressed states */
+  --sf-shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Colored shadows - Brand-specific */
+  --sf-shadow-primary: 0 4px 14px rgba(99, 102, 241, 0.35);
+  --sf-shadow-success: 0 4px 14px rgba(16, 185, 129, 0.35);
+  
+  /* ==========================================================================
+     TRANSITIONS - Animation timing
+     ========================================================================== */
+  
+  /* Duration */
+  --sf-duration-fast: 150ms;
+  --sf-duration-normal: 200ms;
+  --sf-duration-slow: 300ms;
+  --sf-duration-slower: 500ms;
+  
+  /* Easing functions */
+  --sf-ease-default: ease;
+  --sf-ease-in: ease-in;
+  --sf-ease-out: ease-out;
+  --sf-ease-in-out: ease-in-out;
+  --sf-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Common transitions */
+  --sf-transition-fast: all 150ms ease;
+  --sf-transition-normal: all 200ms ease;
+  --sf-transition-slow: all 300ms ease;
+  
+  /* ==========================================================================
+     Z-INDEX SCALE - Layering hierarchy
+     ========================================================================== */
+  
+  --sf-z-base: 0;
+  --sf-z-dropdown: 100;
+  --sf-z-sticky: 200;
+  --sf-z-fixed: 300;
+  --sf-z-modal-backdrop: 400;
+  --sf-z-modal: 500;
+  --sf-z-popover: 600;
+  --sf-z-tooltip: 700;
+  --sf-z-toast: 800;
+  --sf-z-maximum: 9999;
+  
+  /* ==========================================================================
+     LAYOUT - Container & breakpoint values
+     ========================================================================== */
+  
+  --sf-container-sm: 640px;
+  --sf-container-md: 768px;
+  --sf-container-lg: 1024px;
+  --sf-container-xl: 1280px;
+  --sf-container-2xl: 1536px;
+  
+  /* Bottom navigation height (mobile) */
+  --sf-bottom-nav-height: 64px;
+  
+  /* Header height */
+  --sf-header-height: 60px;
+}
+
+/* ============================================================================
+   DARK MODE OVERRIDES
+   ============================================================================
+   
+   Add dark mode support by toggling a .dark class on the html/body element.
+   Uncomment and customize these variables for dark mode support.
+   
+   ============================================================================ */
+
+/*
+.dark {
+  --sf-text: #f9fafb;
+  --sf-text-secondary: #e5e7eb;
+  --sf-muted: #9ca3af;
+  --sf-muted-light: #6b7280;
+  
+  --sf-bg: #111827;
+  --sf-bg-secondary: #1f2937;
+  --sf-bg-white: #1f2937;
+  
+  --sf-surface: #1f2937;
+  --sf-surface-hover: #374151;
+  
+  --sf-border: #374151;
+  --sf-border-light: #4b5563;
+  --sf-border-dark: #1f2937;
+}
+*/

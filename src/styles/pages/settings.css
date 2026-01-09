@@ -1,0 +1,547 @@
+/* ============================================================================
+   SNAPFIT SETTINGS PAGE STYLES
+   ============================================================================
+   
+   Styles for the user settings/preferences page.
+   
+   SECTIONS:
+   - .settings-page : Main page container
+   - .settings-section : Grouped settings section
+   - .settings-card : Individual setting card
+   - .profile-photo-section : Profile photo upload
+   - .multi-angle-photos : Multi-angle body photo uploads
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   PAGE CONTAINER
+   ========================================================================== */
+
+.settings-page {
+  min-height: 100vh;
+  padding: var(--sf-space-6);
+  padding-bottom: calc(var(--sf-space-6) + var(--sf-bottom-nav-height));
+  background: var(--sf-bg);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  .settings-page {
+    padding-top: calc(var(--sf-space-6) + var(--sf-header-height));
+    padding-bottom: var(--sf-space-6);
+  }
+}
+
+/* ==========================================================================
+   SETTINGS HEADER
+   ========================================================================== */
+
+.settings-header {
+  margin-bottom: var(--sf-space-8);
+}
+
+.settings-title {
+  font-size: var(--sf-text-2xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+.settings-subtitle {
+  color: var(--sf-muted);
+  font-size: var(--sf-text-sm);
+}
+
+/* --------------------------------------------------------------------------
+   Polished layout & controls for a professional Settings UI
+   - Tab pills, centered header, better spacing
+   - Full-width, consistent form controls
+   - Polished primary action button
+ -------------------------------------------------------------------------- */
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-4);
+}
+
+.settings-header h2, .settings-title { margin: 0; }
+
+.settings-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: var(--sf-space-4);
+}
+
+.settings-tab {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--sf-text-secondary);
+  cursor: pointer;
+  font-weight: var(--sf-font-medium);
+  transition: background var(--sf-duration-fast), color var(--sf-duration-fast), box-shadow var(--sf-duration-fast);
+}
+
+.settings-tab.active {
+  background: var(--sf-surface);
+  color: var(--sf-text);
+  box-shadow: var(--sf-shadow-sm);
+  border-color: var(--sf-border-dark);
+}
+
+.settings-tab:focus-visible { outline: 3px solid rgba(99,102,241,0.12); outline-offset: 3px; }
+
+/* Form controls: full width, consistent sizes */
+.form-field { width: 100%; }
+.form-field label { display:block; margin-bottom:6px; color:var(--sf-text-secondary); font-weight:var(--sf-font-medium); }
+.form-field input[type="text"], .form-field textarea, .form-field select { width:100%; box-sizing:border-box; }
+.form-field textarea { min-height: 100px; resize:vertical; }
+
+/* Primary action button styling in settings context */
+.settings-section .sf-btn.sf-btn-primary {
+  background: var(--sf-primary);
+  background-image: var(--sf-gradient-primary);
+  color: var(--sf-text-inverted);
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: var(--sf-shadow-primary);
+  border: none;
+}
+.settings-section .sf-btn.sf-btn-primary[disabled], .settings-section .sf-btn.sf-btn-primary[aria-disabled="true"] {
+  opacity: 0.6; cursor: not-allowed; box-shadow: none;
+}
+
+/* Reset button secondary style */
+.settings-actions .sf-btn.sf-btn-outline { padding:10px 14px; border-radius:10px; }
+
+/* Align form content to center column */
+.settings-content { display:flex; justify-content:center; }
+.settings-section { width: 100%; max-width: 880px; }
+
+/* Improve spacing for field hints and small text */
+.field-hint { display:block; color:var(--sf-muted); margin-top:6px; font-size:var(--sf-text-sm); }
+
+
+/* ==========================================================================
+   SETTINGS SECTION
+   ========================================================================== 
+   
+   Groups related settings together.
+   
+   ========================================================================== */
+
+.settings-section {
+  margin-bottom: var(--sf-space-8);
+}
+
+.settings-section-title {
+  font-size: var(--sf-text-lg);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-2);
+}
+
+.settings-section-icon {
+  color: var(--sf-primary);
+}
+
+/* ==========================================================================
+   SETTINGS CARD
+   ========================================================================== */
+
+.settings-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-xl);
+  padding: var(--sf-space-5);
+  margin-bottom: var(--sf-space-4);
+  box-shadow: var(--sf-shadow-sm);
+}
+
+.settings-card:last-child {
+  margin-bottom: 0;
+}
+
+.settings-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sf-space-4);
+}
+
+.settings-card-title {
+  font-size: var(--sf-text-base);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+}
+
+.settings-card-description {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+  line-height: var(--sf-leading-relaxed);
+}
+
+/* ==========================================================================
+   PROFILE PHOTO SECTION
+   ========================================================================== */
+
+.profile-photo-section {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-5);
+  flex-wrap: wrap;
+}
+
+.profile-photo-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--sf-radius-full);
+  overflow: hidden;
+  background: var(--sf-bg-secondary);
+  flex-shrink: 0;
+  border: 3px solid var(--sf-border);
+}
+
+.profile-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: var(--sf-muted);
+}
+
+.profile-photo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-2);
+}
+
+/* ==========================================================================
+   MULTI-ANGLE BODY PHOTOS
+   ========================================================================== 
+   
+   Grid of 4 body photo uploads (front, back, left, right).
+   
+   ========================================================================== */
+
+.multi-angle-photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sf-space-4);
+  margin-top: var(--sf-space-4);
+}
+
+/* Completion status banner */
+.angle-completion-status {
+  border-radius: var(--sf-radius-lg);
+  padding: var(--sf-space-4);
+  margin-bottom: var(--sf-space-5);
+  text-align: center;
+}
+
+.angle-completion-status.complete {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+}
+
+.angle-completion-status.complete .status-icon {
+  color: var(--sf-success);
+}
+
+.angle-completion-status.partial {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+}
+
+.angle-completion-status.partial .status-icon {
+  color: var(--sf-warning);
+}
+
+.angle-completion-status .status-text {
+  font-weight: var(--sf-font-semibold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-2);
+}
+
+/* Individual angle photo card */
+.angle-photo-card {
+  background: var(--sf-surface);
+  border: 2px dashed var(--sf-border);
+  border-radius: var(--sf-radius-lg);
+  padding: var(--sf-space-5);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--sf-transition-normal);
+  position: relative;
+}
+
+.angle-photo-card:hover {
+  border-color: var(--sf-primary);
+  background: var(--sf-primary-light);
+}
+
+.angle-photo-card.has-photo {
+  border-style: solid;
+  border-color: var(--sf-success);
+}
+
+.angle-photo-card input[type="file"] {
+  display: none;
+}
+
+.angle-photo-preview {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: var(--sf-radius-md);
+  margin-bottom: var(--sf-space-3);
+  background: var(--sf-bg-secondary);
+}
+
+.angle-photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.angle-photo-placeholder {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-2);
+  color: var(--sf-muted);
+  margin-bottom: var(--sf-space-3);
+}
+
+.angle-photo-placeholder-icon {
+  font-size: 48px;
+  opacity: 0.5;
+}
+
+.angle-photo-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sf-space-2);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+}
+
+.angle-photo-label .angle-icon {
+  font-size: 20px;
+}
+
+.angle-photo-status {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+  margin-top: var(--sf-space-1);
+}
+
+.angle-photo-card.has-photo .angle-photo-status {
+  color: var(--sf-success);
+}
+
+/* Upload spinner overlay */
+.angle-upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--sf-radius-lg);
+}
+
+/* ==========================================================================
+   BODY MEASUREMENTS SECTION
+   ========================================================================== */
+
+.measurements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sf-space-4);
+}
+
+.measurement-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-2);
+}
+
+.measurement-label {
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-medium);
+  color: var(--sf-text);
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-2);
+}
+
+.measurement-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-2);
+}
+
+.measurement-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  font-size: var(--sf-text-base);
+}
+
+.measurement-input:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+}
+
+.measurement-unit {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+  min-width: 30px;
+}
+
+/* ==========================================================================
+   PRIVACY SETTINGS
+   ========================================================================== */
+
+.privacy-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sf-space-4) 0;
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.privacy-toggle:last-child {
+  border-bottom: none;
+}
+
+.privacy-toggle-info {
+  flex: 1;
+}
+
+.privacy-toggle-label {
+  font-size: var(--sf-text-base);
+  font-weight: var(--sf-font-medium);
+  color: var(--sf-text);
+  margin-bottom: 4px;
+}
+
+.privacy-toggle-description {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+}
+
+/* ==========================================================================
+   ACCOUNT ACTIONS
+   ========================================================================== */
+
+.account-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-3);
+  padding-top: var(--sf-space-4);
+  border-top: 1px solid var(--sf-border);
+}
+
+.logout-btn {
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  color: var(--sf-text);
+  font-weight: var(--sf-font-semibold);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+}
+
+.logout-btn:hover {
+  background: var(--sf-bg-secondary);
+}
+
+.delete-account-btn {
+  padding: 12px 24px;
+  background: transparent;
+  border: 2px solid var(--sf-error-light);
+  border-radius: var(--sf-radius-md);
+  color: var(--sf-error);
+  font-weight: var(--sf-font-semibold);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+}
+
+.delete-account-btn:hover {
+  background: var(--sf-error-light);
+}
+
+/* ==========================================================================
+   RESPONSIVE SETTINGS
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .multi-angle-photos {
+    grid-template-columns: 1fr;
+  }
+  
+  .angle-photo-preview,
+  .angle-photo-placeholder {
+    height: 160px;
+  }
+  
+  .profile-photo-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .profile-photo-actions {
+    align-items: center;
+  }
+  
+  .measurements-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accessibility & Focus styles */
+.sf-btn:focus-visible,
+.angle-photo-card:focus-visible,
+.measurement-input:focus-visible,
+.preset-btn:focus-visible,
+.profile-photo-actions button:focus-visible {
+  outline: 3px solid rgba(99,102,241,0.18);
+  outline-offset: 3px;
+}
+
+/* Checkbox focus */
+.privacy-option .privacy-option-header input[type="checkbox"]:focus-visible {
+  outline: 3px solid rgba(59,130,246,0.18);
+  outline-offset: 2px;
+}
+
+/* Improve interactive target sizes */
+.preset-btn { padding: 8px 12px; border-radius: 8px; }
+
+/* Ensure readable description contrast */
+.privacy-option-desc { color: var(--sf-text-secondary); }

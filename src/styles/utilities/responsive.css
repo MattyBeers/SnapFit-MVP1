@@ -1,0 +1,295 @@
+/* ============================================================================
+   SNAPFIT RESPONSIVE UTILITIES
+   ============================================================================
+   
+   Responsive visibility and display utilities for different screen sizes.
+   
+   BREAKPOINTS:
+   - sm: 640px   (Small devices, phones landscape)
+   - md: 768px   (Medium devices, tablets)
+   - lg: 1024px  (Large devices, desktops)
+   - xl: 1280px  (Extra large devices, wide screens)
+   
+   NAMING CONVENTION:
+   - .sf-{property}-{breakpoint} : Apply from breakpoint and up
+   - .sf-hide-{breakpoint} : Hide at specific breakpoint range
+   - .sf-show-{breakpoint} : Show only at specific breakpoint range
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   HIDE/SHOW UTILITIES
+   ========================================================================== */
+
+/* Hide on mobile (below 768px) */
+.sf-hide-mobile {
+  display: block;
+}
+@media (max-width: 767px) {
+  .sf-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* Hide on desktop (768px and above) */
+.sf-hide-desktop {
+  display: none;
+}
+@media (max-width: 767px) {
+  .sf-hide-desktop {
+    display: block;
+  }
+}
+
+/* Show only on mobile */
+.sf-show-mobile {
+  display: none;
+}
+@media (max-width: 767px) {
+  .sf-show-mobile {
+    display: block;
+  }
+}
+
+/* Show only on desktop */
+.sf-show-desktop {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sf-show-desktop {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   BREAKPOINT-SPECIFIC VISIBILITY
+   ========================================================================== */
+
+/* Small (sm) - 640px and up */
+@media (min-width: 640px) {
+  .sf-sm-hidden { display: none !important; }
+  .sf-sm-block { display: block; }
+  .sf-sm-flex { display: flex; }
+  .sf-sm-grid { display: grid; }
+}
+
+/* Medium (md) - 768px and up */
+@media (min-width: 768px) {
+  .sf-md-hidden { display: none !important; }
+  .sf-md-block { display: block; }
+  .sf-md-flex { display: flex; }
+  .sf-md-grid { display: grid; }
+}
+
+/* Large (lg) - 1024px and up */
+@media (min-width: 1024px) {
+  .sf-lg-hidden { display: none !important; }
+  .sf-lg-block { display: block; }
+  .sf-lg-flex { display: flex; }
+  .sf-lg-grid { display: grid; }
+}
+
+/* Extra Large (xl) - 1280px and up */
+@media (min-width: 1280px) {
+  .sf-xl-hidden { display: none !important; }
+  .sf-xl-block { display: block; }
+  .sf-xl-flex { display: flex; }
+  .sf-xl-grid { display: grid; }
+}
+
+/* ==========================================================================
+   RESPONSIVE FLEX DIRECTION
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .sf-mobile-col {
+    flex-direction: column;
+  }
+  
+  .sf-mobile-col-reverse {
+    flex-direction: column-reverse;
+  }
+}
+
+@media (min-width: 768px) {
+  .sf-desktop-row {
+    flex-direction: row;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE TEXT ALIGNMENT
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .sf-mobile-text-center {
+    text-align: center;
+  }
+  
+  .sf-mobile-text-left {
+    text-align: left;
+  }
+}
+
+@media (min-width: 768px) {
+  .sf-desktop-text-left {
+    text-align: left;
+  }
+  
+  .sf-desktop-text-center {
+    text-align: center;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE SPACING
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .sf-mobile-p-4 {
+    padding: var(--sf-space-4);
+  }
+  
+  .sf-mobile-px-4 {
+    padding-left: var(--sf-space-4);
+    padding-right: var(--sf-space-4);
+  }
+  
+  .sf-mobile-py-4 {
+    padding-top: var(--sf-space-4);
+    padding-bottom: var(--sf-space-4);
+  }
+  
+  .sf-mobile-m-0 {
+    margin: 0;
+  }
+  
+  .sf-mobile-mb-4 {
+    margin-bottom: var(--sf-space-4);
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE WIDTH
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .sf-mobile-w-full {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .sf-desktop-w-auto {
+    width: auto;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE GRID COLUMNS
+   ========================================================================== */
+
+/* Default: 1 column on mobile, responsive on larger screens */
+.sf-grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sf-space-4);
+}
+
+@media (min-width: 640px) {
+  .sf-grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .sf-grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sf-grid-responsive {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ==========================================================================
+   MOBILE NAVIGATION PADDING
+   ========================================================================== 
+   
+   Add padding to account for mobile bottom navigation.
+   
+   ========================================================================== */
+
+.sf-mobile-nav-padding {
+  padding-bottom: calc(var(--sf-space-6) + var(--sf-bottom-nav-height));
+}
+
+@media (min-width: 769px) {
+  .sf-mobile-nav-padding {
+    padding-bottom: var(--sf-space-6);
+  }
+}
+
+/* Desktop header padding */
+.sf-header-padding {
+  padding-top: var(--sf-space-6);
+}
+
+@media (min-width: 769px) {
+  .sf-header-padding {
+    padding-top: calc(var(--sf-space-6) + var(--sf-header-height));
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVE FONT SIZES
+   ========================================================================== */
+
+.sf-text-responsive-sm {
+  font-size: var(--sf-text-sm);
+}
+
+@media (min-width: 768px) {
+  .sf-text-responsive-sm {
+    font-size: var(--sf-text-base);
+  }
+}
+
+.sf-text-responsive-lg {
+  font-size: var(--sf-text-xl);
+}
+
+@media (min-width: 768px) {
+  .sf-text-responsive-lg {
+    font-size: var(--sf-text-2xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sf-text-responsive-lg {
+    font-size: var(--sf-text-3xl);
+  }
+}
+
+/* ==========================================================================
+   STACK TO ROW
+   ========================================================================== 
+   
+   Stack elements vertically on mobile, row on desktop.
+   
+   ========================================================================== */
+
+.sf-stack-to-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-4);
+}
+
+@media (min-width: 768px) {
+  .sf-stack-to-row {
+    flex-direction: row;
+    align-items: center;
+  }
+}

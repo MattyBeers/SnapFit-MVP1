@@ -1,0 +1,436 @@
+/* ============================================================================
+   SNAPFIT EXPLORE/COMMUNITY PAGE STYLES
+   ============================================================================
+   
+   Styles for the social explore/community feed.
+   
+   SECTIONS:
+   - .explore-page : Main page container
+   - .explore-tabs : Tab navigation (For You, Following, etc.)
+   - .explore-feed : Social feed container
+   - .public-outfit-card : Shared outfit card
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   PAGE CONTAINER
+   ========================================================================== */
+
+.explore-page {
+  min-height: 100vh;
+  padding: var(--sf-space-6);
+  padding-bottom: calc(var(--sf-space-6) + var(--sf-bottom-nav-height));
+  background: var(--sf-bg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  .explore-page {
+    padding-top: calc(var(--sf-space-6) + var(--sf-header-height));
+    padding-bottom: var(--sf-space-6);
+  }
+}
+
+/* ==========================================================================
+   EXPLORE HEADER
+   ========================================================================== */
+
+.explore-header {
+  text-align: center;
+  margin-bottom: var(--sf-space-6);
+}
+
+.explore-title {
+  font-size: var(--sf-text-2xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+.explore-subtitle {
+  color: var(--sf-muted);
+  font-size: var(--sf-text-sm);
+}
+
+/* ==========================================================================
+   EXPLORE TABS
+   ========================================================================== */
+
+.explore-tabs {
+  display: flex;
+  gap: var(--sf-space-2);
+  margin-bottom: var(--sf-space-5);
+  border-bottom: 1px solid var(--sf-border);
+  padding-bottom: var(--sf-space-3);
+}
+
+.explore-tab {
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  color: var(--sf-muted);
+  font-weight: var(--sf-font-medium);
+  font-size: var(--sf-text-sm);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.explore-tab:hover {
+  color: var(--sf-text);
+}
+
+.explore-tab.active {
+  color: var(--sf-primary);
+}
+
+.explore-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -13px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--sf-primary);
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   FEED CONTAINER
+   ========================================================================== */
+
+.explore-feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-5);
+}
+
+/* ==========================================================================
+   PUBLIC OUTFIT CARD
+   ========================================================================== 
+   
+   Card for displaying shared outfits in the feed.
+   
+   ========================================================================== */
+
+.public-outfit-card {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-xl);
+  overflow: hidden;
+  box-shadow: var(--sf-shadow-md);
+}
+
+/* Card header with user info */
+.public-outfit-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  padding: var(--sf-space-4);
+}
+
+.public-outfit-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--sf-radius-full);
+  object-fit: cover;
+  border: 2px solid var(--sf-border);
+}
+
+.public-outfit-user {
+  flex: 1;
+}
+
+.public-outfit-username {
+  font-weight: var(--sf-font-semibold);
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+}
+
+.public-outfit-time {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+}
+
+.public-outfit-menu-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sf-radius-full);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--sf-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.public-outfit-menu-btn:hover {
+  background: var(--sf-bg-secondary);
+  color: var(--sf-text);
+}
+
+/* Outfit image grid */
+.public-outfit-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--sf-border);
+}
+
+.public-outfit-images.single {
+  grid-template-columns: 1fr;
+}
+
+.public-outfit-image {
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.public-outfit-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card actions (like, comment, share) */
+.public-outfit-actions {
+  display: flex;
+  gap: var(--sf-space-4);
+  padding: var(--sf-space-4);
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.public-outfit-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--sf-text);
+  font-size: var(--sf-text-sm);
+  padding: 6px;
+  border-radius: var(--sf-radius-md);
+  transition: var(--sf-transition-fast);
+}
+
+.public-outfit-action:hover {
+  background: var(--sf-bg-secondary);
+}
+
+.public-outfit-action.liked {
+  color: var(--sf-error);
+}
+
+.public-outfit-action.liked .heart-icon {
+  animation: heartPop 0.3s ease;
+}
+
+@keyframes heartPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+/* Likes count */
+.public-outfit-likes {
+  padding: 0 var(--sf-space-4);
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+}
+
+/* Caption */
+.public-outfit-caption {
+  padding: var(--sf-space-3) var(--sf-space-4) var(--sf-space-4);
+}
+
+.public-outfit-caption-username {
+  font-weight: var(--sf-font-semibold);
+  margin-right: 6px;
+}
+
+.public-outfit-caption-text {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+  line-height: var(--sf-leading-relaxed);
+}
+
+/* Tags/Hashtags */
+.public-outfit-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sf-space-2);
+  padding: 0 var(--sf-space-4) var(--sf-space-4);
+}
+
+.public-outfit-tag {
+  color: var(--sf-primary);
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-medium);
+}
+
+/* ==========================================================================
+   FOLLOW BUTTON
+   ========================================================================== */
+
+.follow-btn {
+  padding: 6px 16px;
+  border-radius: var(--sf-radius-full);
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-semibold);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+}
+
+.follow-btn.follow {
+  background: var(--sf-primary);
+  color: white;
+  border: none;
+}
+
+.follow-btn.follow:hover {
+  background: var(--sf-primary-hover);
+}
+
+.follow-btn.following {
+  background: transparent;
+  color: var(--sf-text);
+  border: 1px solid var(--sf-border);
+}
+
+.follow-btn.following:hover {
+  border-color: var(--sf-error);
+  color: var(--sf-error);
+}
+
+/* ==========================================================================
+   COMMENTS SECTION
+   ========================================================================== */
+
+.public-outfit-comments {
+  padding: var(--sf-space-4);
+  border-top: 1px solid var(--sf-border);
+}
+
+.view-comments-btn {
+  background: none;
+  border: none;
+  color: var(--sf-muted);
+  font-size: var(--sf-text-sm);
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: var(--sf-space-3);
+}
+
+.view-comments-btn:hover {
+  color: var(--sf-text);
+}
+
+.comment-input-wrapper {
+  display: flex;
+  gap: var(--sf-space-3);
+  align-items: center;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  font-size: var(--sf-text-sm);
+  background: var(--sf-bg-secondary);
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+  background: var(--sf-surface);
+}
+
+/* ==========================================================================
+   EMPTY FEED STATE
+   ========================================================================== */
+
+.explore-empty {
+  text-align: center;
+  padding: var(--sf-space-12) var(--sf-space-4);
+}
+
+.explore-empty-icon {
+  font-size: 64px;
+  margin-bottom: var(--sf-space-4);
+  opacity: 0.5;
+}
+
+.explore-empty-title {
+  font-size: var(--sf-text-xl);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+.explore-empty-text {
+  color: var(--sf-muted);
+  margin-bottom: var(--sf-space-6);
+}
+
+/* ==========================================================================
+   LOADING STATE
+   ========================================================================== */
+
+.explore-loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--sf-space-8);
+}
+
+.feed-skeleton {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-xl);
+  overflow: hidden;
+}
+
+.feed-skeleton-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  padding: var(--sf-space-4);
+}
+
+.feed-skeleton-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-bg-secondary);
+  animation: skeleton-pulse 1.5s infinite;
+}
+
+.feed-skeleton-text {
+  flex: 1;
+}
+
+.feed-skeleton-line {
+  height: 12px;
+  background: var(--sf-bg-secondary);
+  border-radius: 4px;
+  margin-bottom: 6px;
+  animation: skeleton-pulse 1.5s infinite;
+}
+
+.feed-skeleton-line:last-child {
+  width: 60%;
+  margin-bottom: 0;
+}
+
+.feed-skeleton-image {
+  aspect-ratio: 1;
+  background: var(--sf-bg-secondary);
+  animation: skeleton-pulse 1.5s infinite;
+}
+
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

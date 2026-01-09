@@ -1,0 +1,166 @@
+/* ============================================================================
+   SNAPFIT CSS - MAIN STYLESHEET INDEX
+   ============================================================================
+   
+   This is the main entry point for all SnapFit styles.
+   
+   IMPORT ORDER IS IMPORTANT:
+   1. Base (variables, reset, typography) - Foundation styles
+   2. Components - Reusable UI components
+   3. Pages - Page-specific layouts
+   4. Utilities - Helper classes (load last to override)
+   
+   HOW TO USE THIS FILE:
+   Import this file in your main.jsx:
+   import './styles/index.css';
+   
+   FOR UX/UI DEVELOPERS:
+   - Variables: Edit base/variables.css to change colors, fonts, spacing
+   - Components: Edit files in components/ for UI elements
+   - Pages: Edit files in pages/ for page-specific styles
+   - See CSS_ARCHITECTURE.md for detailed documentation
+   
+   ============================================================================ */
+
+
+/* ============================================================================
+   1. BASE STYLES
+   ============================================================================
+   Foundation styles that must load first.
+   ============================================================================ */
+
+/* CSS Custom Properties (Design Tokens)
+   Edit this file to change: colors, fonts, spacing, shadows, etc.
+   Changes here affect the entire application. */
+@import './base/variables.css';
+
+/* CSS Reset
+   Normalizes browser defaults for consistent cross-browser styling.
+   Generally should not need editing. */
+@import './base/reset.css';
+
+/* Typography
+   Heading styles, text utilities, font weights, etc.
+   Edit for font styling changes. */
+@import './base/typography.css';
+
+
+/* ============================================================================
+   2. COMPONENT STYLES
+   ============================================================================
+   Reusable UI components used throughout the application.
+   ============================================================================ */
+
+/* Buttons
+   All button variants: primary, secondary, outline, gradient, etc.
+   Edit for button appearance changes. */
+@import './components/buttons.css';
+
+/* Navigation
+   Bottom nav (mobile), desktop nav, page tabs.
+   Edit for navigation styling. */
+@import './components/navigation.css';
+
+/* Header
+   Desktop header bar with logo and actions.
+   Edit for header appearance. */
+@import './components/header.css';
+
+/* Footer
+   Site footer sections and links.
+   Edit for footer styling. */
+@import './components/footer.css';
+
+/* Cards
+   All card variants: closet items, outfits, feed posts, etc.
+   Edit for card appearance changes. */
+@import './components/cards.css';
+
+/* Modals
+   Modal overlays, dialogs, and popups.
+   Edit for modal/dialog styling. */
+@import './components/modals.css';
+
+/* Forms
+   Inputs, textareas, selects, checkboxes, file uploads, etc.
+   Edit for form element styling. */
+@import './components/forms.css';
+
+
+/* ============================================================================
+   3. PAGE-SPECIFIC STYLES
+   ============================================================================
+   Styles specific to individual pages/screens.
+   ============================================================================ */
+
+/* Home Page
+   Hero section, features, how-it-works, CTAs.
+   Edit for landing page changes. */
+@import './pages/home.css';
+
+/* Closet Page
+   Clothing grid, filters, category pills, empty states.
+   Edit for closet/wardrobe page. */
+@import './pages/closet.css';
+
+/* Outfits Page
+   Outfit cards, outfit builder interface.
+   Edit for outfits management page. */
+@import './pages/outfits.css';
+
+/* Explore/Community Page
+   Social feed, public outfit cards, likes/comments.
+   Edit for social features. */
+@import './pages/explore.css';
+
+/* Settings Page
+   Settings sections, profile photo, body measurements, privacy.
+   Edit for settings/preferences page. */
+@import './pages/settings.css';
+
+/* Profile Page
+   User profile header, stats, grid of posts.
+   Edit for profile display. */
+@import './pages/profile.css';
+
+/* Virtual Fitting Room
+   Body template, clothing overlays, rotation controls, fit scoring.
+   Edit for VFR experience. */
+@import './pages/virtual-fitting-room.css';
+
+
+/* ============================================================================
+   4. UTILITY STYLES
+   ============================================================================
+   Helper classes and utilities. Load last so they can override other styles.
+   ============================================================================ */
+
+/* Animations
+   Keyframes and animation utility classes.
+   Edit for animation effects. */
+@import './utilities/animations.css';
+
+/* Helper Classes
+   Display, flexbox, spacing, sizing, colors, etc.
+   Quick utility classes for common patterns. */
+@import './utilities/helpers.css';
+
+/* Responsive Utilities
+   Breakpoint-specific visibility and responsive helpers.
+   Edit for responsive behavior. */
+@import './utilities/responsive.css';
+
+
+/* ============================================================================
+   CUSTOM OVERRIDES
+   ============================================================================
+   Add any project-specific overrides below this line.
+   This section is for quick fixes and customizations that don't fit
+   elsewhere. For major changes, edit the appropriate file above.
+   ============================================================================ */
+
+/* Example override:
+.my-custom-class {
+  color: var(--sf-primary);
+}
+*/

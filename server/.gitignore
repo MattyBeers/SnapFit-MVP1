@@ -1,0 +1,8 @@
+# Environment variables
+.env
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies (node_modules are in parent folder)

@@ -1,0 +1,578 @@
+/* ============================================================================
+   SNAPFIT FORM COMPONENTS
+   ============================================================================
+   
+   Form element styles including inputs, selects, checkboxes, etc.
+   
+   COMPONENTS:
+   - .sf-input : Text input fields
+   - .sf-textarea : Multi-line text areas
+   - .sf-select : Dropdown selects
+   - .sf-checkbox : Checkbox inputs
+   - .sf-radio : Radio button inputs
+   - .sf-label : Form labels
+   - .sf-form-group : Form field grouping
+   - .sf-form-hint : Helper text under fields
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   FORM GROUP (Field Container)
+   ========================================================================== */
+
+.sf-form-group {
+  margin-bottom: var(--sf-space-5);
+}
+
+.sf-form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   LABELS
+   ========================================================================== */
+
+.sf-label {
+  display: block;
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+/* Required field indicator */
+.sf-label-required::after {
+  content: ' *';
+  color: var(--sf-error);
+}
+
+/* ==========================================================================
+   TEXT INPUT
+   ========================================================================== */
+
+.sf-input {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  
+  /* Visual */
+  background: var(--sf-surface);
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  
+  /* Typography */
+  font-family: var(--sf-font-family);
+  font-size: var(--sf-text-base);
+  color: var(--sf-text);
+  
+  /* Animation */
+  transition: var(--sf-transition-fast);
+}
+
+.sf-input::placeholder {
+  color: var(--sf-muted-light);
+}
+
+.sf-input:hover:not(:disabled) {
+  border-color: var(--sf-border-dark);
+}
+
+.sf-input:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+  box-shadow: 0 0 0 3px var(--sf-primary-light);
+}
+
+/* Error state */
+.sf-input.error,
+.sf-input:invalid:not(:placeholder-shown) {
+  border-color: var(--sf-error);
+}
+
+.sf-input.error:focus {
+  box-shadow: 0 0 0 3px var(--sf-error-light);
+}
+
+/* Disabled state */
+.sf-input:disabled {
+  background: var(--sf-bg-secondary);
+  color: var(--sf-muted);
+  cursor: not-allowed;
+}
+
+/* Input sizes */
+.sf-input-sm {
+  padding: 8px 12px;
+  font-size: var(--sf-text-sm);
+}
+
+.sf-input-lg {
+  padding: 16px 20px;
+  font-size: var(--sf-text-lg);
+}
+
+/* ==========================================================================
+   TEXTAREA
+   ========================================================================== */
+
+.sf-textarea {
+  display: block;
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 16px;
+  resize: vertical;
+  
+  /* Visual */
+  background: var(--sf-surface);
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  
+  /* Typography */
+  font-family: var(--sf-font-family);
+  font-size: var(--sf-text-base);
+  color: var(--sf-text);
+  line-height: var(--sf-leading-normal);
+  
+  /* Animation */
+  transition: var(--sf-transition-fast);
+}
+
+.sf-textarea::placeholder {
+  color: var(--sf-muted-light);
+}
+
+.sf-textarea:hover:not(:disabled) {
+  border-color: var(--sf-border-dark);
+}
+
+.sf-textarea:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+  box-shadow: 0 0 0 3px var(--sf-primary-light);
+}
+
+/* ==========================================================================
+   SELECT DROPDOWN
+   ========================================================================== */
+
+.sf-select {
+  display: block;
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  
+  /* Visual */
+  background: var(--sf-surface);
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  
+  /* Custom arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  
+  /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Typography */
+  font-family: var(--sf-font-family);
+  font-size: var(--sf-text-base);
+  color: var(--sf-text);
+  
+  /* Animation */
+  transition: var(--sf-transition-fast);
+  cursor: pointer;
+}
+
+.sf-select:hover:not(:disabled) {
+  border-color: var(--sf-border-dark);
+}
+
+.sf-select:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+  box-shadow: 0 0 0 3px var(--sf-primary-light);
+}
+
+/* ==========================================================================
+   CHECKBOX
+   ========================================================================== */
+
+.sf-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  cursor: pointer;
+}
+
+.sf-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-sm);
+  background: var(--sf-surface);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+  
+  /* Remove default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Center checkmark */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-checkbox:hover {
+  border-color: var(--sf-primary);
+}
+
+.sf-checkbox:checked {
+  background: var(--sf-primary);
+  border-color: var(--sf-primary);
+}
+
+.sf-checkbox:checked::after {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.sf-checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--sf-primary-light);
+}
+
+.sf-checkbox-label {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+  user-select: none;
+}
+
+/* ==========================================================================
+   RADIO BUTTON
+   ========================================================================== */
+
+.sf-radio-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  cursor: pointer;
+}
+
+.sf-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-surface);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+  
+  /* Remove default styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Center dot */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sf-radio:hover {
+  border-color: var(--sf-primary);
+}
+
+.sf-radio:checked {
+  border-color: var(--sf-primary);
+}
+
+.sf-radio:checked::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: var(--sf-primary);
+  border-radius: var(--sf-radius-full);
+}
+
+.sf-radio:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--sf-primary-light);
+}
+
+.sf-radio-label {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+  user-select: none;
+}
+
+/* ==========================================================================
+   FORM HINT / HELPER TEXT
+   ========================================================================== */
+
+.sf-form-hint {
+  display: block;
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+  margin-top: var(--sf-space-1);
+}
+
+.sf-form-hint.error {
+  color: var(--sf-error);
+}
+
+.sf-form-hint.success {
+  color: var(--sf-success);
+}
+
+/* ==========================================================================
+   FILE INPUT / UPLOAD
+   ========================================================================== */
+
+.sf-file-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sf-space-8);
+  border: 2px dashed var(--sf-border);
+  border-radius: var(--sf-radius-lg);
+  background: var(--sf-bg-secondary);
+  cursor: pointer;
+  transition: var(--sf-transition-normal);
+}
+
+.sf-file-upload:hover {
+  border-color: var(--sf-primary);
+  background: var(--sf-primary-light);
+}
+
+.sf-file-upload input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.sf-file-upload-icon {
+  font-size: 48px;
+  color: var(--sf-muted);
+  margin-bottom: var(--sf-space-3);
+}
+
+.sf-file-upload-text {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-text);
+  text-align: center;
+}
+
+.sf-file-upload-hint {
+  font-size: var(--sf-text-xs);
+  color: var(--sf-muted);
+  margin-top: var(--sf-space-1);
+}
+
+/* ==========================================================================
+   RANGE SLIDER
+   ========================================================================== */
+
+.sf-range {
+  width: 100%;
+  height: 6px;
+  background: var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.sf-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--sf-primary);
+  border-radius: var(--sf-radius-full);
+  cursor: pointer;
+  transition: transform var(--sf-duration-fast) ease;
+}
+
+.sf-range::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.sf-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--sf-primary);
+  border: none;
+  border-radius: var(--sf-radius-full);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   TOGGLE SWITCH
+   ========================================================================== */
+
+.sf-toggle {
+  position: relative;
+  width: 48px;
+  height: 26px;
+  background: var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  cursor: pointer;
+  transition: background var(--sf-duration-fast) ease;
+}
+
+.sf-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: var(--sf-radius-full);
+  box-shadow: var(--sf-shadow-sm);
+  transition: transform var(--sf-duration-fast) ease;
+}
+
+.sf-toggle.active {
+  background: var(--sf-primary);
+}
+
+.sf-toggle.active::after {
+  transform: translateX(22px);
+}
+
+/* ==========================================================================
+   SEARCH INPUT
+   ========================================================================== */
+
+.sf-search {
+  position: relative;
+}
+
+.sf-search-input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  background: var(--sf-surface);
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  font-size: var(--sf-text-base);
+  transition: var(--sf-transition-fast);
+}
+
+.sf-search-input:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+  box-shadow: 0 0 0 3px var(--sf-primary-light);
+}
+
+.sf-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sf-muted);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   COLOR PICKER
+   ========================================================================== */
+
+.color-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-picker-row input[type="color"] {
+  width: 48px;
+  height: 48px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.preset-colors {
+  display: flex;
+  gap: 8px;
+}
+
+.preset-colors button {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 2px solid transparent;
+}
+
+.preset-colors button:hover {
+  transform: scale(1.1);
+  border-color: #6366f1;
+}
+
+/* ==========================================================================
+   CONTROL GROUP (Background Remover, VFR)
+   ========================================================================== */
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--sf-text);
+}
+
+.hint-text {
+  display: block;
+  font-size: 13px;
+  color: var(--sf-muted);
+  margin-top: 4px;
+}
+
+/* Method selector buttons */
+.method-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.method-btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.method-btn:hover {
+  border-color: var(--sf-primary);
+  background: #f0f7ff;
+}
+
+.method-btn.active {
+  border-color: var(--sf-primary);
+  background: var(--sf-primary);
+  color: white;
+}

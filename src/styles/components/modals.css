@@ -1,0 +1,486 @@
+/* ============================================================================
+   SNAPFIT MODAL COMPONENTS
+   ============================================================================
+   
+   Modal/Dialog styles for overlays and popups.
+   
+   COMPONENTS:
+   - .sf-modal-overlay : Dark backdrop
+   - .sf-modal : Modal container
+   - .sf-modal-header : Modal header with title and close
+   - .sf-modal-body : Modal content area
+   - .sf-modal-footer : Modal actions/buttons
+   
+   SPECIALIZED MODALS:
+   - .fitting-room-modal : Virtual Fitting Room modal
+   - .bg-remover-modal : Background remover modal
+   - .item-preview-modal : Item detail preview modal
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   MODAL OVERLAY (BACKDROP)
+   ========================================================================== */
+
+.sf-modal-overlay {
+  /* Fixed full screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--sf-z-modal-backdrop);
+  
+  /* Dark semi-transparent background */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  
+  /* Center modal content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sf-space-4);
+  
+  /* Animation */
+  animation: sf-fade-in 0.2s ease;
+}
+
+@keyframes sf-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==========================================================================
+   BASE MODAL
+   ========================================================================== */
+
+.sf-modal {
+  background: var(--sf-surface);
+  border-radius: var(--sf-radius-xl);
+  box-shadow: var(--sf-shadow-2xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  /* Animation */
+  animation: sf-modal-slide-up 0.3s ease;
+}
+
+@keyframes sf-modal-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal sizes */
+.sf-modal-sm { max-width: 400px; }
+.sf-modal-lg { max-width: 700px; }
+.sf-modal-xl { max-width: 900px; }
+.sf-modal-full { max-width: 95vw; }
+
+/* ==========================================================================
+   MODAL HEADER
+   ========================================================================== */
+
+.sf-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sf-space-5);
+  border-bottom: 1px solid var(--sf-border);
+}
+
+.sf-modal-title {
+  font-size: var(--sf-text-xl);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+  margin: 0;
+}
+
+.sf-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-bg-secondary);
+  border: none;
+  cursor: pointer;
+  color: var(--sf-muted);
+  font-size: 20px;
+  transition: var(--sf-transition-fast);
+}
+
+.sf-modal-close:hover {
+  background: var(--sf-border);
+  color: var(--sf-text);
+}
+
+/* ==========================================================================
+   MODAL BODY
+   ========================================================================== */
+
+.sf-modal-body {
+  padding: var(--sf-space-5);
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ==========================================================================
+   MODAL FOOTER
+   ========================================================================== */
+
+.sf-modal-footer {
+  display: flex;
+  gap: var(--sf-space-3);
+  justify-content: flex-end;
+  padding: var(--sf-space-4) var(--sf-space-5);
+  border-top: 1px solid var(--sf-border);
+  background: var(--sf-bg-secondary);
+}
+
+/* ==========================================================================
+   ITEM PREVIEW MODAL
+   ========================================================================== 
+   
+   Modal for viewing clothing item details.
+   
+   ========================================================================== */
+
+.item-preview-modal {
+  max-width: 600px;
+}
+
+.item-preview-image {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--sf-bg-secondary);
+  border-radius: var(--sf-radius-lg);
+  margin-bottom: var(--sf-space-4);
+}
+
+.item-preview-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.item-preview-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sf-space-3);
+}
+
+.item-preview-name {
+  font-size: var(--sf-text-2xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+}
+
+.item-preview-brand {
+  font-size: var(--sf-text-base);
+  color: var(--sf-muted);
+}
+
+.item-preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sf-space-2);
+}
+
+.item-tag {
+  padding: 4px 12px;
+  background: var(--sf-primary-light);
+  color: var(--sf-primary);
+  border-radius: var(--sf-radius-full);
+  font-size: var(--sf-text-xs);
+  font-weight: var(--sf-font-medium);
+}
+
+/* ==========================================================================
+   WELCOME VIDEO MODAL
+   ========================================================================== */
+
+.welcome-video-modal {
+  max-width: 800px;
+}
+
+.welcome-video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--sf-radius-lg);
+  background: #000;
+}
+
+.welcome-video-container iframe,
+.welcome-video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================================================
+   VIRTUAL FITTING ROOM MODAL
+   ========================================================================== 
+   
+   Large modal for the Virtual Fitting Room experience.
+   
+   ========================================================================== */
+
+.fitting-room-modal {
+  max-width: 1200px;
+  max-height: 90vh;
+  width: 95vw;
+}
+
+.fitting-room-modal.enhanced {
+  max-width: 1400px;
+}
+
+.fitting-room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-bottom: 2px solid var(--sf-border);
+  background: var(--sf-gradient-primary);
+  color: white;
+}
+
+.fitting-room-header h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.fitting-room-header .view-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 4px 0 0 0;
+  font-weight: 400;
+}
+
+.fitting-room-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Main viewing area */
+.fitting-room-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.fitting-room-sidebar {
+  width: 280px;
+  border-left: 1px solid var(--sf-border);
+  padding: 20px;
+  overflow-y: auto;
+  background: var(--sf-surface);
+}
+
+.fitting-room-sidebar.enhanced {
+  width: 320px;
+}
+
+/* ==========================================================================
+   BACKGROUND REMOVER MODAL
+   ========================================================================== 
+   
+   Modal for AI background removal tool.
+   
+   ========================================================================== */
+
+.bg-remover-modal {
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.bg-remover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 2px solid #e5e7eb;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px 16px 0 0;
+}
+
+.bg-remover-header h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.bg-remover-content {
+  padding: 24px;
+}
+
+.bg-remover-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.preview-column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.preview-column h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--sf-text);
+}
+
+.preview-image-container {
+  background: #f9fafb;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.preview-image-container img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+/* Checkerboard pattern for transparency preview */
+.preview-image-container.checkerboard {
+  background: 
+    linear-gradient(45deg, #e5e7eb 25%, transparent 25%),
+    linear-gradient(-45deg, #e5e7eb 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e5e7eb 75%),
+    linear-gradient(-45deg, transparent 75%, #e5e7eb 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.bg-remover-controls {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.bg-remover-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.bg-remover-actions button {
+  flex: 1;
+}
+
+.bg-remover-tips {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 24px;
+}
+
+.bg-remover-tips h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: var(--sf-primary);
+}
+
+.bg-remover-tips ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.bg-remover-tips li {
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--sf-text);
+}
+
+/* ==========================================================================
+   RESPONSIVE MODALS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .sf-modal {
+    max-height: 95vh;
+    margin: 0;
+    border-radius: var(--sf-radius-xl) var(--sf-radius-xl) 0 0;
+  }
+  
+  .fitting-room-content {
+    flex-direction: column;
+  }
+  
+  .fitting-room-sidebar {
+    width: 100%;
+    max-height: 300px;
+    border-left: none;
+    border-top: 1px solid var(--sf-border);
+  }
+  
+  .bg-remover-preview {
+    grid-template-columns: 1fr;
+  }
+  
+  .bg-remover-actions {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 600px) {
+  .bg-remover-modal {
+    max-height: 95vh;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .bg-remover-header {
+    padding: 16px 20px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .bg-remover-header h3 {
+    font-size: 18px;
+  }
+  
+  .preview-image-container {
+    min-height: 200px;
+  }
+}

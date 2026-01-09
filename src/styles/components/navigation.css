@@ -1,0 +1,403 @@
+/* ============================================================================
+   SNAPFIT NAVIGATION COMPONENTS
+   ============================================================================
+   
+   Navigation styles including mobile bottom nav and desktop navigation.
+   
+   COMPONENTS:
+   - .sf-bottom-nav : Mobile bottom navigation bar
+   - .sf-nav-item : Navigation item/link
+   - .sf-nav-icon : Navigation icon container
+   - .sf-nav-badge : Notification badge on nav items
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   MOBILE BOTTOM NAVIGATION
+   ========================================================================== 
+   
+   Fixed bottom navigation bar for mobile devices.
+   Contains nav items: Home, Closet, VFR, Wishlist, Outfits, Explore, Profile
+   
+   ========================================================================== */
+
+.sf-bottom-nav {
+  /* Fixed positioning at bottom */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--sf-z-fixed);
+  
+  /* Visual */
+  background: var(--sf-surface);
+  border-top: 1px solid var(--sf-border);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+  
+  /* Safe area padding for notched devices */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.sf-bottom-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: var(--sf-bottom-nav-height, 64px);
+  max-width: var(--sf-container-xl);
+  margin: 0 auto;
+  padding: 0 var(--sf-space-2);
+}
+
+/* Hide bottom nav on desktop */
+@media (min-width: 769px) {
+  .sf-bottom-nav {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   NAVIGATION ITEM
+   ========================================================================== */
+
+.sf-nav-item {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  
+  /* Sizing - touch target */
+  padding: 8px 12px;
+  min-width: 56px;
+  border-radius: var(--sf-radius-lg);
+  
+  /* Visual */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  
+  /* Typography */
+  font-size: 11px;
+  font-weight: var(--sf-font-medium);
+  color: var(--sf-muted);
+  text-decoration: none;
+  
+  /* Animation */
+  transition: all 0.2s ease;
+}
+
+.sf-nav-item span {
+  font-size: 20px;
+  transition: transform 0.2s ease;
+}
+
+.sf-nav-item:hover {
+  color: var(--sf-text);
+  background: var(--sf-background);
+}
+
+.sf-nav-item:hover span {
+  transform: scale(1.15);
+}
+
+/* Active state */
+.sf-nav-item--active {
+  color: var(--sf-primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.sf-nav-item--active span {
+  transform: scale(1.1);
+}
+
+/* Featured item (VFR) - Animated Purple Background */
+.sf-nav-item--featured {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Animated purple pill background for VFR */
+.sf-nav-item--featured::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  border-radius: var(--sf-radius-xl);
+  z-index: -1;
+  opacity: 1;
+  animation: vfr-pulse 2s ease-in-out infinite;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+/* Shimmer/shine effect */
+.sf-nav-item--featured::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.5),
+    transparent
+  );
+  z-index: 1;
+  animation: vfr-shimmer 3s ease-in-out infinite;
+  border-radius: var(--sf-radius-xl);
+}
+
+.sf-nav-item--featured {
+  color: white !important;
+}
+
+.sf-nav-item--featured > span,
+.sf-nav-item--featured > div {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.sf-nav-item--featured:hover::before {
+  animation: vfr-pulse-fast 1s ease-in-out infinite;
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.sf-nav-item--featured:hover::after {
+  animation: vfr-shimmer-fast 1.5s ease-in-out infinite;
+}
+
+.sf-nav-item--featured:hover {
+  color: #000 !important;
+  background: transparent;
+}
+
+.sf-nav-item--featured.sf-nav-item--active::before {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
+  animation: none;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.5);
+}
+
+/* VFR Pulse animation */
+@keyframes vfr-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+
+/* Shimmer animation */
+@keyframes vfr-shimmer {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+@keyframes vfr-shimmer-fast {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes vfr-pulse-fast {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+  }
+}
+
+/* Gradient variant (optional alternative) */
+.sf-nav-item--gradient:not(.sf-nav-item--featured) {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+}
+
+.sf-nav-item--gradient:not(.sf-nav-item--featured):hover {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+}
+
+.sf-nav-item--gradient:not(.sf-nav-item--featured).sf-nav-item--active {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25), rgba(236, 72, 153, 0.25));
+}
+
+/* ==========================================================================
+   NAVIGATION ICON
+   ========================================================================== */
+
+.sf-nav-icon {
+  font-size: 22px;
+  line-height: 1;
+  transition: transform var(--sf-duration-fast) ease;
+}
+
+.sf-nav-item:hover .sf-nav-icon {
+  transform: scale(1.1);
+}
+
+.sf-nav-item.active .sf-nav-icon {
+  transform: scale(1.15);
+}
+
+/* ==========================================================================
+   ADD BUTTON (Center nav item)
+   ========================================================================== 
+   
+   Special styling for the center "Add" button in bottom nav.
+   
+   ========================================================================== */
+
+.sf-nav-add {
+  /* Elevated above other items */
+  position: relative;
+  margin-top: -20px;
+}
+
+.sf-nav-add .sf-nav-icon {
+  /* Circular gradient background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--sf-gradient-primary);
+  border-radius: var(--sf-radius-full);
+  color: var(--sf-text-inverted);
+  font-size: 26px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  transition: var(--sf-transition-normal);
+}
+
+.sf-nav-add:hover .sf-nav-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+/* ==========================================================================
+   NOTIFICATION BADGE
+   ========================================================================== 
+   
+   Small badge to show notifications/counts on nav items.
+   
+   ========================================================================== */
+
+.sf-nav-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+  /* Size */
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  
+  /* Visual */
+  background: var(--sf-error);
+  color: var(--sf-text-inverted);
+  border-radius: var(--sf-radius-full);
+  
+  /* Typography */
+  font-size: 10px;
+  font-weight: var(--sf-font-bold);
+  line-height: 18px;
+  text-align: center;
+}
+
+/* ==========================================================================
+   DESKTOP NAVIGATION (Header Nav)
+   ========================================================================== 
+   
+   Horizontal navigation for desktop header.
+   
+   ========================================================================== */
+
+.site-nav {
+  display: flex;
+  gap: var(--sf-space-4);
+}
+
+.site-nav a {
+  color: var(--sf-text);
+  text-decoration: none;
+  font-weight: var(--sf-font-medium);
+  padding: 8px 12px;
+  border-radius: var(--sf-radius-md);
+  transition: var(--sf-transition-fast);
+}
+
+.site-nav a:hover {
+  background: var(--sf-bg-secondary);
+  color: var(--sf-primary);
+}
+
+.site-nav a.active {
+  color: var(--sf-primary);
+  background: var(--sf-primary-light);
+}
+
+/* ==========================================================================
+   VFR PAGE TABS
+   ========================================================================== 
+   
+   Tab navigation for Virtual Fitting Room page.
+   
+   ========================================================================== */
+
+.vfr-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vfr-tab {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.vfr-tab.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.vfr-tab:not(.active) {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.vfr-tab:hover:not(.active) {
+  background: #e5e7eb;
+}
+
+/* Hide scrollbar but allow scrolling */
+.vfr-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.vfr-tabs {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

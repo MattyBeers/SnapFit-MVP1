@@ -1,0 +1,316 @@
+/* ============================================================================
+   SNAPFIT CLOSET PAGE STYLES
+   ============================================================================
+   
+   Styles for the digital closet/wardrobe page.
+   
+   COMPONENTS:
+   - .closet-page : Main page container
+   - .closet-header : Page header with title and actions
+   - .closet-filters : Category/filter bar
+   - .closet-grid : Clothing item grid
+   - .closet-empty : Empty state
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   PAGE CONTAINER
+   ========================================================================== */
+
+.closet-page {
+  min-height: 100vh;
+  padding: var(--sf-space-6);
+  padding-bottom: calc(var(--sf-space-6) + var(--sf-bottom-nav-height));
+  background: var(--sf-bg);
+}
+
+@media (min-width: 769px) {
+  .closet-page {
+    padding-top: calc(var(--sf-space-6) + var(--sf-header-height));
+    padding-bottom: var(--sf-space-6);
+  }
+}
+
+/* ==========================================================================
+   CLOSET HEADER
+   ========================================================================== */
+
+.closet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sf-space-6);
+  flex-wrap: wrap;
+  gap: var(--sf-space-4);
+}
+
+.closet-title {
+  font-size: var(--sf-text-2xl);
+  font-weight: var(--sf-font-bold);
+  color: var(--sf-text);
+}
+
+.closet-count {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+  font-weight: var(--sf-font-normal);
+}
+
+.closet-actions {
+  display: flex;
+  gap: var(--sf-space-3);
+}
+
+/* ==========================================================================
+   CATEGORY FILTERS
+   ========================================================================== 
+   
+   Horizontal scrollable category filter pills.
+   
+   ========================================================================== */
+
+.closet-filters {
+  display: flex;
+  gap: var(--sf-space-2);
+  overflow-x: auto;
+  padding-bottom: var(--sf-space-3);
+  margin-bottom: var(--sf-space-5);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.closet-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.closet-filter-btn {
+  padding: 8px 20px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-surface);
+  color: var(--sf-text);
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+}
+
+.closet-filter-btn:hover {
+  border-color: var(--sf-primary);
+  color: var(--sf-primary);
+}
+
+.closet-filter-btn.active {
+  background: var(--sf-primary);
+  border-color: var(--sf-primary);
+  color: white;
+}
+
+/* Filter count badge */
+.closet-filter-badge {
+  margin-left: 6px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--sf-radius-full);
+  font-size: 11px;
+}
+
+.closet-filter-btn:not(.active) .closet-filter-badge {
+  background: var(--sf-bg-secondary);
+}
+
+/* ==========================================================================
+   ITEMS GRID
+   ========================================================================== */
+
+.closet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--sf-space-4);
+}
+
+@media (min-width: 640px) {
+  .closet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .closet-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* ==========================================================================
+   EMPTY STATE
+   ========================================================================== */
+
+.closet-empty {
+  text-align: center;
+  padding: var(--sf-space-12) var(--sf-space-4);
+}
+
+.closet-empty-icon {
+  font-size: 64px;
+  margin-bottom: var(--sf-space-4);
+  opacity: 0.5;
+}
+
+.closet-empty-title {
+  font-size: var(--sf-text-xl);
+  font-weight: var(--sf-font-semibold);
+  color: var(--sf-text);
+  margin-bottom: var(--sf-space-2);
+}
+
+.closet-empty-text {
+  color: var(--sf-muted);
+  margin-bottom: var(--sf-space-6);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   VIEW TOGGLE (Grid/List)
+   ========================================================================== */
+
+.closet-view-toggle {
+  display: flex;
+  background: var(--sf-bg-secondary);
+  border-radius: var(--sf-radius-md);
+  padding: 4px;
+}
+
+.closet-view-btn {
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  border-radius: var(--sf-radius-sm);
+  cursor: pointer;
+  color: var(--sf-muted);
+  transition: var(--sf-transition-fast);
+}
+
+.closet-view-btn.active {
+  background: var(--sf-surface);
+  color: var(--sf-text);
+  box-shadow: var(--sf-shadow-sm);
+}
+
+/* ==========================================================================
+   SEARCH BAR IN CLOSET
+   ========================================================================== */
+
+.closet-search {
+  position: relative;
+  max-width: 300px;
+  margin-bottom: var(--sf-space-5);
+}
+
+.closet-search-input {
+  width: 100%;
+  padding: 10px 16px 10px 40px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-surface);
+  font-size: var(--sf-text-sm);
+  transition: var(--sf-transition-fast);
+}
+
+.closet-search-input:focus {
+  outline: none;
+  border-color: var(--sf-primary);
+}
+
+.closet-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sf-muted);
+}
+
+/* ==========================================================================
+   ADD ITEM BUTTON (Floating)
+   ========================================================================== */
+
+.closet-add-btn {
+  position: fixed;
+  bottom: calc(var(--sf-bottom-nav-height) + var(--sf-space-4));
+  right: var(--sf-space-4);
+  width: 56px;
+  height: 56px;
+  border-radius: var(--sf-radius-full);
+  background: var(--sf-gradient-primary);
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: var(--sf-shadow-lg);
+  transition: var(--sf-transition-normal);
+  z-index: var(--sf-z-sticky);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closet-add-btn:hover {
+  transform: scale(1.1);
+  box-shadow: var(--sf-shadow-xl);
+}
+
+@media (min-width: 769px) {
+  .closet-add-btn {
+    bottom: var(--sf-space-6);
+  }
+}
+
+/* ==========================================================================
+   SORT DROPDOWN
+   ========================================================================== */
+
+.closet-sort {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-2);
+}
+
+.closet-sort-label {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+}
+
+.closet-sort-select {
+  padding: 8px 32px 8px 12px;
+  border: 2px solid var(--sf-border);
+  border-radius: var(--sf-radius-md);
+  background: var(--sf-surface);
+  font-size: var(--sf-text-sm);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   LOADING STATE
+   ========================================================================== */
+
+.closet-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sf-space-12);
+}
+
+.closet-skeleton {
+  background: linear-gradient(90deg, var(--sf-bg-secondary) 25%, var(--sf-bg) 50%, var(--sf-bg-secondary) 75%);
+  background-size: 200% 100%;
+  animation: closet-shimmer 1.5s infinite;
+  border-radius: var(--sf-radius-lg);
+  aspect-ratio: 1;
+}
+
+@keyframes closet-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}

@@ -1,0 +1,372 @@
+/* ============================================================================
+   SNAPFIT HEADER COMPONENT
+   ============================================================================
+   
+   Site header styles for desktop view. Mobile uses bottom navigation.
+   
+   COMPONENTS:
+   - .site-header : Main header container
+   - .site-header__left : Left section with logo
+   - .site-nav : Navigation links
+   - .site-header__actions : Right-side action buttons
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   MAIN HEADER
+   ========================================================================== */
+
+.site-header {
+  /* Fixed at top */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--sf-z-sticky);
+  
+  /* Layout */
+  display: none; /* Hidden on mobile by default */
+  height: var(--sf-header-height);
+  padding: 0 var(--sf-space-6);
+  
+  /* Visual */
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--sf-border);
+  box-shadow: var(--sf-shadow-sm);
+}
+
+/* Show header on desktop */
+@media (min-width: 769px) {
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sf-space-6);
+  }
+}
+
+/* ==========================================================================
+   HEADER LEFT SECTION (LOGO)
+   ========================================================================== */
+
+.site-header__left {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.site-brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  text-decoration: none;
+  color: var(--sf-text);
+}
+
+.site-logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+.site-brand {
+  font-size: var(--sf-text-xl);
+  font-weight: var(--sf-font-bold);
+  background: var(--sf-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ==========================================================================
+   HEADER NAVIGATION
+   ========================================================================== */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-6);
+  flex: 1;
+  justify-content: center;
+}
+
+.site-nav__link {
+  font-size: var(--sf-text-base);
+  font-weight: var(--sf-font-medium);
+  color: var(--sf-muted);
+  text-decoration: none;
+  padding: var(--sf-space-2) var(--sf-space-3);
+  border-radius: var(--sf-radius-md);
+  transition: var(--sf-transition-fast);
+}
+
+.site-nav__link:hover {
+  color: var(--sf-text);
+  background: var(--sf-bg-secondary);
+}
+
+.site-nav__link.active {
+  color: var(--sf-primary);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.wishlist-link {
+  color: var(--sf-primary);
+}
+
+/* ==========================================================================
+   VFR SPECIAL LINK - Animated Purple Background
+   ========================================================================== */
+
+.site-nav__link--vfr {
+  position: relative;
+  color: white !important;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  animation: vfr-desktop-pulse 2s ease-in-out infinite;
+  overflow: hidden;
+}
+
+.site-nav__link--vfr::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(96, 165, 250, 0.5),
+    transparent
+  );
+  animation: vfr-desktop-shimmer 3s ease-in-out infinite;
+  border-radius: var(--sf-radius-md);
+}
+
+.site-nav__link--vfr:hover {
+  color: #000 !important;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+  transform: translateY(-2px);
+}
+
+.site-nav__link--vfr:hover::after {
+  animation: vfr-desktop-shimmer-fast 1.5s ease-in-out infinite;
+}
+
+.site-nav__link--vfr.active {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
+  animation: none;
+}
+
+@keyframes vfr-desktop-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes vfr-desktop-shimmer {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+@keyframes vfr-desktop-shimmer-fast {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* ==========================================================================
+   HEADER RIGHT ACTIONS
+   ========================================================================== */
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-4);
+  flex-shrink: 0;
+}
+
+.site-actions-vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--sf-space-1);
+}
+
+.site-actions-stack {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+}
+
+.site-user {
+  font-size: var(--sf-text-sm);
+  color: var(--sf-muted);
+}
+
+.site-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sf-space-2) var(--sf-space-4);
+  font-size: var(--sf-text-sm);
+  font-weight: var(--sf-font-medium);
+  border-radius: var(--sf-radius-md);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+  text-decoration: none;
+  border: none;
+}
+
+.site-btn--primary {
+  background: var(--sf-primary);
+  color: white;
+}
+
+.site-btn--primary:hover {
+  background: var(--sf-primary-dark);
+}
+
+/* ==========================================================================
+   SETTINGS LINK
+   ========================================================================== */
+
+.site-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sf-space-1);
+  text-decoration: none;
+  color: var(--sf-muted);
+  transition: var(--sf-transition-fast);
+}
+
+.site-settings:hover {
+  color: var(--sf-primary);
+}
+
+.site-settings__icon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+}
+
+.site-settings__label {
+  font-size: var(--sf-text-xs);
+  font-weight: var(--sf-font-medium);
+}
+
+/* ==========================================================================
+   LEGACY HEADER CLASSES (for backward compatibility)
+   ========================================================================== */
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--sf-container-xl);
+  padding: 0 var(--sf-space-6);
+  height: 100%;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+  text-decoration: none;
+  color: var(--sf-text);
+}
+
+.header-logo img {
+  height: 36px;
+  width: auto;
+}
+
+.header-logo-text {
+  font-size: var(--sf-text-xl);
+  font-weight: var(--sf-font-bold);
+  background: var(--sf-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sf-space-3);
+}
+
+/* Icon button in header */
+.header-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--sf-radius-full);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--sf-muted);
+  transition: var(--sf-transition-fast);
+}
+
+.header-icon-btn:hover {
+  background: var(--sf-bg-secondary);
+  color: var(--sf-text);
+}
+
+/* Profile avatar in header */
+.header-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--sf-radius-full);
+  object-fit: cover;
+  border: 2px solid var(--sf-border);
+  cursor: pointer;
+  transition: var(--sf-transition-fast);
+}
+
+.header-avatar:hover {
+  border-color: var(--sf-primary);
+}
+
+/* ==========================================================================
+   HEADER WITH NOTIFICATION BADGE
+   ========================================================================== */
+
+.header-icon-btn-wrapper {
+  position: relative;
+}
+
+.header-notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: var(--sf-error);
+  color: var(--sf-text-inverted);
+  border-radius: var(--sf-radius-full);
+  font-size: 10px;
+  font-weight: var(--sf-font-bold);
+  line-height: 16px;
+  text-align: center;
+}

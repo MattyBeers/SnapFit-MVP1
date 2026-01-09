@@ -1,0 +1,232 @@
+/* ============================================================================
+   SNAPFIT CSS RESET
+   ============================================================================
+   
+   Modern CSS reset that provides a consistent baseline across all browsers.
+   This removes browser default styling while preserving useful defaults.
+   
+   IMPORTANT: This file should be loaded FIRST before any other styles.
+   
+   ============================================================================ */
+
+/* ==========================================================================
+   BOX SIZING
+   ========================================================================== */
+
+/* Use border-box model for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   ROOT & BODY DEFAULTS
+   ========================================================================== */
+
+/* Remove default margin from all elements */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Set core body defaults */
+html {
+  /* Prevent font size inflation on mobile */
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  
+  /* Smooth scrolling for anchor links */
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Set base font family from variables */
+  font-family: var(--sf-font-family);
+  
+  /* Default text color */
+  color: var(--sf-text);
+  
+  /* Default background */
+  background: var(--sf-bg);
+  
+  /* Minimum height for full viewport */
+  min-height: 100vh;
+  
+  /* Improved text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Base line height */
+  line-height: var(--sf-leading-normal);
+}
+
+/* ==========================================================================
+   TYPOGRAPHY RESETS
+   ========================================================================== */
+
+/* Balance text wrapping on headings */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+  line-height: var(--sf-leading-tight);
+}
+
+/* Improve paragraph readability */
+p {
+  text-wrap: pretty;
+}
+
+/* Remove list styles on ul, ol with list role */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* ==========================================================================
+   LINK RESETS
+   ========================================================================== */
+
+/* Set default link colors */
+a {
+  color: var(--sf-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Remove underline from links that have no text content */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* ==========================================================================
+   MEDIA RESETS
+   ========================================================================== */
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Remove built-in form typography styles */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* ==========================================================================
+   FORM ELEMENT RESETS
+   ========================================================================== */
+
+/* Remove default button styles */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Disable default textarea resize */
+textarea {
+  resize: vertical;
+}
+
+/* Remove default fieldset styles */
+fieldset {
+  border: none;
+}
+
+/* ==========================================================================
+   TABLE RESETS
+   ========================================================================== */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* ==========================================================================
+   ACCESSIBILITY
+   ========================================================================== */
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Remove all animations and transitions for people who prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==========================================================================
+   SELECTION
+   ========================================================================== */
+
+/* Custom selection color matching brand */
+::selection {
+  background: var(--sf-primary-light);
+  color: var(--sf-primary-dark);
+}
+
+/* ==========================================================================
+   FOCUS STYLES
+   ========================================================================== */
+
+/* Default focus ring for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--sf-primary);
+  outline-offset: 2px;
+}
+
+/* Remove focus outline for mouse users */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ==========================================================================
+   SCROLLBAR STYLING (Optional)
+   ========================================================================== */
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--sf-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sf-muted-light);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--sf-muted);
+}
