@@ -1,11 +1,28 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../lib/supabaseClient";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 export default function Header() {
   const { user } = useAuth() || {};
   const [menuOpen, setMenuOpen] = useState(false);
+  // track window width to force re-render on resize so CSS/media-query
+  // dependent layout updates take effect immediately in React tree
+  const [windowWidth, setWindowWidth] = useState(typeof window !== "undefined" ? window.innerWidth : 1024);
+
+  useEffect(() => {
+    let t = null;
+    const onResize = () => {
+      clearTimeout(t);
+      t = setTimeout(() => setWindowWidth(window.innerWidth), 120);
+    };
+    window.addEventListener("resize", onResize);
+    return () => {
+      clearTimeout(t);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -15,7 +32,7 @@ export default function Header() {
     }
   };
 
-  return (
+  const headerEl = (
     <header className="site-header">
       <button
         className="header-hamburger"
@@ -93,4 +110,19 @@ export default function Header() {
       </div>
     </header>
   );
+
+  if (typeof document !== "undefined" && document.body) {
+    // Ensure header container exists near the top of <body> so sticky positioning
+    // behaves as expected (header should appear at top of page, not after content).
+    let container = document.getElementById("site-header-root");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "site-header-root";
+      // Insert as first child so header is before the app content in DOM order
+      document.body.insertBefore(container, document.body.firstChild);
+    }
+    return createPortal(headerEl, container);
+  }
+
+  return headerEl;
 }

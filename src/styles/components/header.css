@@ -17,33 +17,30 @@
    ========================================================================== */
 
 .site-header {
-  /* Fixed at top */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: var(--sf-z-sticky);
-  
-  /* Layout */
-  display: none; /* Hidden on mobile by default */
-  height: var(--sf-header-height);
-  padding: 0 var(--sf-space-6);
-  
-  /* Visual */
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--sf-border);
-  box-shadow: var(--sf-shadow-sm);
+  /* Hidden on mobile by default; layout and sticky behavior enabled at desktop breakpoints */
+  display: none;
 }
 
-/* Show header on desktop */
+/* Show header on desktop/tablet and make it sticky (preferred over fixed)
+   Sticky keeps header in normal flow and prevents clipping during mid-size resizes. */
 @media (min-width: 769px) {
   .site-header {
+    position: sticky;
+    top: env(safe-area-inset-top, 0);
+    left: 0;
+    right: 0;
+    z-index: var(--sf-z-sticky);
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: var(--sf-space-6);
+    height: calc(var(--sf-header-height) + env(safe-area-inset-top, 0));
+    padding: env(safe-area-inset-top, 0) var(--sf-space-6) 0 var(--sf-space-6);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--sf-border);
+    box-shadow: var(--sf-shadow-sm);
   }
 }
 
@@ -90,6 +87,7 @@
   gap: var(--sf-space-6);
   flex: 1;
   justify-content: center;
+  flex-wrap: wrap; /* allow items to wrap instead of overflowing and getting clipped */
 }
 
 .site-nav__link {

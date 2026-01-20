@@ -23,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <AuthStatus />
-        <div style={{ paddingTop: 80, paddingBottom: 60, minHeight: "100vh" }}>
+        <main className="sf-main sf-header-padding sf-mobile-nav-padding">
           <Navigation />
           <Routes>
             <Route path="/login" element={<Login />} />
@@ -40,7 +40,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/:username" element={<Profile />} />
           </Routes>
-        </div>
+        </main>
         <Footer />
       </BrowserRouter>
     </AuthProvider>

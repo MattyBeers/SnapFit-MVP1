@@ -12,15 +12,63 @@
    ========================================================================== */
 
 .site-footer {
+  /* Sticky footer in normal document flow (flex layout pushes it to bottom)
+     Do NOT use position: fixed/absolute here to avoid overlaying content. */
+  width: 100%;
   background: var(--sf-text);
   color: var(--sf-text-inverted);
-  padding: var(--sf-space-8) var(--sf-space-6);
-  margin-top: auto;
+  padding: 12px 0;
+  margin-top: auto; /* lets flex parent push footer to bottom on short pages */
 }
 
 .site-footer__container {
   max-width: var(--sf-container-xl);
   margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Collapsed bar (default): small, low-contrast, minimal height */
+.site-footer__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+.site-footer__mini {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+
+.site-footer__mini a { color: rgba(255,255,255,0.7); text-decoration: none; }
+.site-footer__mini a:hover { color: rgba(255,255,255,0.92); text-decoration: underline; }
+
+/* Toggle button style - subtle ghost */
+.site-footer__toggle { padding: 6px 10px; font-size: 13px; }
+
+/* Full content hidden by default; shown when user expands */
+.site-footer__content.is-hidden { display: none; }
+.site-footer__content.is-visible { display: block; }
+
+/* When collapsed, make footer small and less visually dominant */
+.site-footer--collapsed { background: rgba(17,24,39,0.95); }
+
+/* When expanded, allow scrolling inside footer if tall */
+.site-footer--expanded { background: var(--sf-text); }
+.site-footer--expanded .site-footer__container { max-height: 60vh; overflow: auto; }
+
+/* On wider viewports show full footer content by default (desktop UX) */
+@media (min-width: 992px) {
+  .site-footer__content.is-hidden { display: block; }
+  /* hide the compact bar on desktop since full footer is visible */
+  .site-footer__bar { display: none; }
+  .site-footer { padding: 18px 0; }
 }
 
 /* ==========================================================================
@@ -75,8 +123,8 @@
    ========================================================================== */
 
 .footer-subscribe {
-  min-width: 200px;
-  flex: 1.5;
+  /* hide subscribe area in footer per UX request */
+  display: none !important;
 }
 
 .footer-subscribe__form {
@@ -115,9 +163,9 @@
    ========================================================================== */
 
 .footer-bottom {
-  margin-top: var(--sf-space-6);
-  padding-top: var(--sf-space-4);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: var(--sf-space-4);
+  padding-top: var(--sf-space-2);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -19,6 +19,7 @@ body { margin: 0; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: 
   --sf-radius: 10px;
   --sf-header-height: 96px;
   --sf-footer-height: 56px;
+  --sf-footer-collapsed-height: 52px;
 }
 
 body {
@@ -30,13 +31,49 @@ body {
 }
 
 /* App shell spacing to account for fixed header/footer */
-.sf-app { min-height: 100vh; }
+.sf-app { }
+
+/* Layout: ensure the outer root app wrapper fills viewport and lets content grow
+   so footer sits flush at the bottom with no extra whitespace. Targets the
+   outer .sf-app rendered as a direct child of #root (created in main.jsx). */
+#root > .sf-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root > .sf-app > .sf-shell {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+/* The inner .sf-app (rendered inside App) should grow to fill available space */
+#root > .sf-app > .sf-shell > .sf-app {
+  flex: 1 1 auto;
+}
+
+/* New: use a clear main wrapper for app content so footer sits at bottom */
+.sf-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
 .sf-shell {
   max-width: 980px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: calc(var(--sf-header-height) + 16px);
-  padding-bottom: calc(var(--sf-footer-height) + 16px);
+  /* default (mobile / narrow) - keep small top padding so header (when hidden) doesn't create large gap */
+  padding-top: 16px;
+  /* keep modest bottom padding; footer participates in normal flow */
+  padding-bottom: 20px;
+}
+
+/* Apply header offset only on desktop where the fixed header is visible */
+@media (min-width: 769px) {
+  .sf-shell {
+    padding-top: calc(var(--sf-header-height) + 18px);
+  }
 }
 
 /* Basic components */
@@ -585,8 +622,17 @@ a.site-btn:focus {
 /* End baseline */
 
 /* FOOTER: responsive multi-column with headline rows */
-.site-footer { background: linear-gradient(180deg, #fafafa, #ffffff); color: #0b1b2b; border-top: 1px solid rgba(2,6,23,0.06); padding: 36px 16px; }
-.site-footer__container { max-width: 1100px; margin: 0 auto; }
+.site-footer {
+  /* make footer span the full viewport width (full-bleed) */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  background: linear-gradient(180deg, #fafafa, #ffffff);
+  color: #0b1b2b;
+  border-top: 1px solid rgba(2,6,23,0.06);
+  /* reduce vertical padding so footer sits closer to bottom */
+  padding: 12px 0 8px 0;
+}
+.site-footer__container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 .footer-row { display: grid; grid-template-columns: repeat(1, 1fr); gap: 18px; align-items: start; }
 .footer-column { min-width: 0; }
 .footer-head { font-size: 15px; margin: 0 0 8px 0; color: var(--sf-primary); font-weight: 800; }
@@ -597,6 +643,9 @@ a.site-btn:focus {
 .footer-subscribe__form { display:flex; gap:8px; margin-top: 6px; }
 .footer-input { padding: 10px 12px; border-radius: 999px; border: 1px solid rgba(9,20,34,0.06); min-width: 0; flex: 1; }
 .footer-submit { padding: 8px 14px; }
+
+/* Hide email signup inside footer (removed from visual footer per UX request) */
+.footer-subscribe { display: none !important; }
 
 .footer-bottom { display:flex; justify-content:space-between; align-items:center; margin-top: 22px; color: #6b7280; font-size: 13px; }
 .footer-bottom-right a { color: var(--sf-primary); text-decoration:none; }

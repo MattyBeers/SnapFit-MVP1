@@ -1,8 +1,20 @@
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function Footer() {
   const { user } = useAuth() || {};
+
+  const [expanded, setExpanded] = useState(false);
+
+  // Expand by default on larger viewports so desktop users see full footer
+  useEffect(() => {
+    try {
+      if (window.innerWidth >= 992) setExpanded(true);
+    } catch (e) {
+      // ignore (server-side or test env)
+    }
+  }, []);
 
   const email = user?.email || "";
 
@@ -16,8 +28,26 @@ export default function Footer() {
   };
 
   return (
-    <footer className="site-footer">
+    <footer className={`site-footer ${expanded ? "site-footer--expanded" : "site-footer--collapsed"}`}>
       <div className="site-footer__container">
+        {/* Collapsed bar: small, low-contrast links and an expand button */}
+        <div className="site-footer__bar">
+          <ul className="site-footer__mini list-unstyled">
+            <li><Link to="/terms">Terms</Link></li>
+            <li><Link to="/privacy">Privacy</Link></li>
+            <li><Link to="/status">Status</Link></li>
+          </ul>
+          <button
+            aria-expanded={expanded}
+            aria-controls="site-footer-full"
+            className="sf-btn sf-btn-ghost site-footer__toggle"
+            onClick={() => setExpanded((s) => !s)}
+          >
+            {expanded ? "Close" : "More"}
+          </button>
+        </div>
+
+        <div id="site-footer-full" className={`site-footer__content ${expanded ? "is-visible" : "is-hidden"}`}>
         <div className="footer-row">
           <div className="footer-column">
             <h4 className="footer-head">My Account</h4>
@@ -68,6 +98,7 @@ export default function Footer() {
               <button className="sf-btn sf-btn-primary footer-submit">Sign up</button>
             </form>
           </div>
+        </div>
         </div>
 
         <div className="footer-bottom">
