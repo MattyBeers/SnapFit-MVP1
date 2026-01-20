@@ -1,0 +1,51 @@
+# Render infrastructure as code for SnapFit (two services)
+# - Backend: Node web service running server/index.js
+# - Frontend: Static site built with Vite (dist)
+
+services:
+  - type: web
+    name: snapfit-backend
+    env: node
+    region: oregon
+    plan: free
+    branch: main
+    path: SnapFit
+    buildCommand: npm ci && npm run build
+    startCommand: npm run server
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: MONGODB_URI
+      - key: MONGODB_DB_NAME
+      - key: SUPABASE_URL
+      - key: SUPABASE_ANON_KEY
+      - key: OPENAI_API_KEY
+      - key: REMOVEBG_API_KEY
+      - key: HUGGINGFACE_API_KEY
+      - key: SCRAPING_PROVIDER
+      - key: SCRAPING_API_KEY
+      - key: CORS_ORIGIN
+      - key: NODE_ENV
+      - key: PORT
+
+  - type: static
+    name: snapfit-frontend
+    env: static
+    region: oregon
+    plan: free
+    branch: main
+    path: SnapFit
+    buildCommand: npm ci && npm run build
+    publishPath: dist
+    autoDeploy: true
+    envVars:
+      - key: VITE_SUPABASE_URL
+      - key: VITE_SUPABASE_ANON_KEY
+      - key: VITE_API_BASE_URL
+      - key: VITE_REMOVEBG_API_KEY
+      - key: VITE_HUGGINGFACE_API_KEY
+
+# Notes:
+# 1) Do NOT commit secret values into this repo. Set real values in Render dashboard or use Render secrets.
+# 2) For MongoDB Atlas networking, prefer VPC peering or whitelist Render outbound IP ranges for testing.
+# 3) After pushing this file to GitHub, connect the repository in Render and create services from this render.yaml.
