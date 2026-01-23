@@ -11,11 +11,16 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api'
 let cachedSession = null;
 let sessionPromise = null;
 
-// Listen for auth state changes to update cache
-supabase.auth.onAuthStateChange((event, session) => {
-  cachedSession = session;
-  sessionPromise = null; // Clear any pending promise
-});
+// If supabase client couldn't be created (missing envs), log a clear error and avoid calling methods on null
+if (!supabase) {
+  console.error('❌ Supabase client not initialized — check VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY are set in your build/deploy env.');
+} else {
+  // Listen for auth state changes to update cache
+  supabase.auth.onAuthStateChange((event, session) => {
+    cachedSession = session;
+    sessionPromise = null; // Clear any pending promise
+  });
+}
 
 /**
  * Get the current Supabase session token with timeout protection
@@ -23,6 +28,10 @@ supabase.auth.onAuthStateChange((event, session) => {
  */
 async function getAuthToken() {
   try {
+    if (!supabase) {
+      console.error('❌ Supabase client missing in getAuthToken');
+      return null;
+    }
     // Check if cached session is still valid (not expired)
     if (cachedSession?.access_token && cachedSession?.expires_at) {
       const expiresAt = cachedSession.expires_at * 1000; // Convert to milliseconds
