@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+// Use global fetch available in Node 18+
 
 // Header rotation: lightweight user-agent variants
 export const USER_AGENTS = [

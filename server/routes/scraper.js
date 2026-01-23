@@ -4,7 +4,6 @@
  */
 
 import express from 'express';
-import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import scraperAdapter from '../lib/scraperAdapter.js';
 
