@@ -9,8 +9,8 @@ services:
     region: oregon
     plan: free
     branch: main
-    path: SnapFit
-    buildCommand: npm ci && npm run build
+    path: .
+    buildCommand: npm ci
     startCommand: npm run server
     healthCheckPath: /api/health
     autoDeploy: true
@@ -34,7 +34,7 @@ services:
     region: oregon
     plan: free
     branch: main
-    path: SnapFit
+    path: .
     buildCommand: npm ci && npm run build
     publishPath: dist
     autoDeploy: true
