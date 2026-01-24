@@ -59,10 +59,27 @@ const supabase = createClient(
 
 // Middleware
 app.use(helmet());
-app.use(cors({
-  origin: process.env.CORS_ORIGIN?.split(',') || 'http://localhost:5173',
-  credentials: true
-}));
+
+// Configure CORS with an allow-list derived from CORS_ORIGIN env (comma-separated)
+const rawOrigins = process.env.CORS_ORIGIN || 'http://localhost:5173';
+const allowedOrigins = rawOrigins.split(',').map(s => s.trim()).filter(Boolean);
+console.log('🔒 Allowed CORS origins:', allowedOrigins);
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow non-browser requests (e.g. curl, server-to-server) when origin is undefined
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+// Ensure preflight requests are handled with the same options
+app.options('*', cors(corsOptions));
 app.use(express.json({ limit: '10mb' }));
 
 // Rate limiting
