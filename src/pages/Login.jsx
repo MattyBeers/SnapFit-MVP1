@@ -21,11 +21,14 @@ export default function Login() {
     }
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
+      const result = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
+      console.log('Supabase signInWithPassword result:', result);
+
+      const { error } = result;
       if (error) {
         setError(error.message);
       } else {
@@ -50,11 +53,14 @@ export default function Login() {
     }
 
     try {
-      const { error } = await supabase.auth.signUp({
+      const result = await supabase.auth.signUp({
         email,
         password,
       });
 
+      console.log('Supabase signUp result:', result);
+
+      const { error } = result;
       if (error) {
         setError(error.message);
       } else {
