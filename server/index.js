@@ -78,8 +78,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-// Ensure preflight requests are handled with the same options
-app.options('*', cors(corsOptions));
+// Note: express/cors middleware handles preflight; avoid app.options('*', ...) which
+// can conflict with path-to-regexp in some environments.
 app.use(express.json({ limit: '10mb' }));
 
 // Rate limiting
